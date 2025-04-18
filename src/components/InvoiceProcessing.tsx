@@ -433,8 +433,8 @@ const InvoiceProcessing = () => {
                   Topic {num}
                 </button>
               ))}
-            </div>
           </div>
+        </div>
           {chatMessages.map((message, index) => (
             <div 
               key={index} 
@@ -744,10 +744,10 @@ const InvoiceProcessing = () => {
                   <h2 className="font-medium text-gray-700 flex items-center">
                     Invoices <span className="text-sm text-gray-500 ml-1">(87)</span>
                   </h2>
-                  <div className="md:hidden">
+                <div className="md:hidden">
                     <button onClick={toggleLeftPane} className="p-1 rounded hover:bg-blue-100 active:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-150">
-                      <ChevronLeft size={18} />
-                    </button>
+                    <ChevronLeft size={18} />
+                  </button>
                   </div>
                 </div>
               </div>
@@ -819,8 +819,8 @@ const InvoiceProcessing = () => {
                         <div className="font-medium text-gray-800">{invoice.id}</div>
                         <div className={`font-medium text-sm ${isNarrowView ? "mt-1" : ""}`}>{invoice.amount}</div>
                       </div>
-                      <div className="text-sm text-gray-600 mt-1">{invoice.company}</div>
-                      <div className="text-sm text-gray-500 mt-1">{invoice.date}</div>
+                        <div className="text-sm text-gray-600 mt-1">{invoice.company}</div>
+                        <div className="text-sm text-gray-500 mt-1">{invoice.date}</div>
                       <div className="mt-2">
                         <span className={`text-xs px-2 py-1 rounded-full inline-block ${
                           invoice.status === 'pending' ? 'bg-yellow-100 text-yellow-800' : 
@@ -889,10 +889,10 @@ const InvoiceProcessing = () => {
                     <div className="bg-white rounded-lg p-4 mb-4">
                       {/* Invoice Number and Status */}
                       <div className="flex justify-between items-start mb-4">
-                        <div>
+                    <div>
                           <div className="text-sm text-gray-500 mb-1">Invoice #</div>
                           <div className="text-2xl font-semibold">{displayedInvoice.id}</div>
-                        </div>
+                    </div>
                         <span className="px-3 py-1 bg-red-100 text-red-800 text-sm rounded-full">
                           Needs Assistant
                         </span>
@@ -968,7 +968,7 @@ const InvoiceProcessing = () => {
                       {/* Step 1 */}
                       <div className="bg-white border border-gray-200 rounded-lg p-4">
                         <div className="flex justify-between items-center mb-4">
-                          <div>
+                    <div>
                             <div className="text-sm text-gray-500">Step 1</div>
                             <h3 className="text-lg font-semibold mb-2">Document Extraction</h3>
                             <button 
@@ -980,7 +980,7 @@ const InvoiceProcessing = () => {
                                 <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                               </svg>
                             </button>
-                          </div>
+                    </div>
                           <span className="flex items-center text-gray-900 text-sm font-medium">
                             <svg className="w-5 h-5 mr-1.5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
                               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -989,39 +989,39 @@ const InvoiceProcessing = () => {
                           </span>
                         </div>
                         <div className="grid grid-cols-2 gap-4">
-                          <div>
+                    <div>
                             <div className="text-sm text-gray-500 mb-1">Invoice #</div>
                             <div className="bg-gray-50 rounded p-2 text-sm">field value</div>
-                          </div>
-                          <div>
+                    </div>
+                    <div>
                             <div className="text-sm text-gray-500 mb-1">Vendor</div>
                             <div className="bg-gray-50 rounded p-2 text-sm">field value</div>
-                          </div>
+                    </div>
                           <div>
                             <div className="text-sm text-gray-500 mb-1">Total</div>
                             <div className="bg-gray-50 rounded p-2 text-sm">field value</div>
-                          </div>
+                  </div>
                           <div>
                             <div className="text-sm text-gray-500 mb-1">Tax Amount</div>
                             <div className="bg-gray-50 rounded p-2 text-sm">field value</div>
-                          </div>
-                        </div>
+                    </div>
+                  </div>
                       </div>
 
                       {/* Step 2 */}
                       <div className="bg-white border border-gray-200 rounded-lg p-4">
                         <div className="flex justify-between items-center mb-4">
-                          <div>
+                  <div>
                             <div className="text-sm text-gray-500">Step 2</div>
                             <h3 className="text-lg font-semibold">3-way matching</h3>
-                          </div>
+                    </div>
                           <span className="flex items-center text-gray-900 text-sm font-medium">
                             <svg className="w-5 h-5 mr-1.5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
                               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                             </svg>
                             Completed
                           </span>
-                        </div>
+                  </div>
                         <div className="grid grid-cols-2 gap-4">
                           <div>
                             <div className="text-sm text-gray-500 mb-1">Invoice #</div>
@@ -1229,8 +1229,8 @@ const InvoiceProcessing = () => {
               <div className="mt-4 flex items-center justify-center">
                 <div className="flex items-center text-gray-500 text-xs">
                   <svg className="w-4 h-4 mr-1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12,3 Q16,2 19,7 Q21,11 17,18 Q14,21 9,19 Q5,16 6,11 Q7,5 12,3" fill="none" stroke="#E86C00" strokeWidth="2" />
-                  </svg>
+                  <path d="M12,3 Q16,2 19,7 Q21,11 17,18 Q14,21 9,19 Q5,16 6,11 Q7,5 12,3" fill="none" stroke="#E86C00" strokeWidth="2" />
+                </svg>
                   <span>Powered by Automation Anywhere</span>
                 </div>
               </div>
@@ -1283,13 +1283,13 @@ const InvoiceProcessing = () => {
               <div className="w-4 h-4 bg-white rounded-lg transform rotate-45 absolute left-1/2 -translate-x-1/2 top-0.5"></div>
               <div className="w-3 h-3 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg transform rotate-45 absolute left-1/2 -translate-x-1/2 top-1 flex items-center justify-center">
                 <span className="text-white text-xs font-bold transform -rotate-45">A</span>
-              </div>
+          </div>
             </div>
           </div>
           <div>
-            <h1 className="text-xl font-semibold text-gray-800">
+          <h1 className="text-xl font-semibold text-gray-800">
               Invoice Processing
-            </h1>
+          </h1>
             <div className="text-sm text-gray-500">Acme Inc.</div>
           </div>
         </div>
