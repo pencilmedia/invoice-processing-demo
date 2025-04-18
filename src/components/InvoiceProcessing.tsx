@@ -16,10 +16,10 @@ const PdfViewerDialog = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => 
   return (
     <div className="fixed inset-0 z-50">
       {/* Scrim/Overlay */}
-      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/50 transition-opacity duration-[1500ms]" onClick={onClose} />
       
       {/* Dialog */}
-      <div className="absolute inset-4 bg-white rounded-lg shadow-xl flex flex-col">
+      <div className="absolute inset-4 bg-white rounded-lg shadow-xl flex flex-col transition-all duration-[1500ms]">
         {/* Header - Fixed */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
           <h2 className="text-lg font-medium text-gray-900">Invoice-tiff.pdf</h2>
@@ -347,18 +347,13 @@ const InvoiceProcessing = () => {
   const handleInvoiceSelect = (invoice: Invoice) => {
     if (invoice.id === selectedInvoice?.id) return;
     
-    setFadeState("fading-out");
+    setFadeState("opacity-0");
     
     setTimeout(() => {
       setSelectedInvoice(invoice);
       setDisplayedInvoice(invoice);
-      setFadeState("fading-in");
-      
-      setTimeout(() => {
-        setFadeState("visible");
-      }, 150);
-      
-    }, 150);
+      setFadeState("opacity-100");
+    }, 500);
     
     if (windowWidth < 768) {
       setIsLeftPaneCollapsed(true);
@@ -405,10 +400,8 @@ const InvoiceProcessing = () => {
 
   // Render Chat Panel
   const renderChatPanel = () => {
-    if (!isChatOpen) return null;
-    
     return (
-      <aside className="w-80 bg-blue-50/50 flex flex-col h-full">
+      <aside className={`w-80 bg-blue-50/50 flex flex-col h-full transform transition-all duration-300 ease-in-out ${isChatOpen ? 'translate-x-0 opacity-100 w-80' : 'translate-x-full opacity-0 w-0'}`}>
         {/* Chat Header */}
         <div className="flex justify-between items-center p-4 bg-blue-100 border-b border-blue-200">
           <h3 className="font-medium text-gray-900">Assistant</h3>
@@ -421,7 +414,7 @@ const InvoiceProcessing = () => {
         </div>
 
         {/* Chat Messages */}
-        <div className="flex-1 bg-blue-50/50 p-4 overflow-y-auto">
+        <div className={`flex-1 bg-blue-50/50 p-4 overflow-y-auto transition-opacity duration-200 ${isChatOpen ? 'opacity-100' : 'opacity-0'}`}>
           <div className="space-y-4">
             <h2 className="text-xl font-semibold text-gray-900">What can I help with today?</h2>
             <div className="flex flex-wrap gap-2">
@@ -433,8 +426,8 @@ const InvoiceProcessing = () => {
                   Topic {num}
                 </button>
               ))}
+            </div>
           </div>
-        </div>
           {chatMessages.map((message, index) => (
             <div 
               key={index} 
@@ -456,7 +449,7 @@ const InvoiceProcessing = () => {
         </div>
 
         {/* Chat Input */}
-        <div className="p-4 border-t border-blue-200">
+        <div className={`p-4 border-t border-blue-200 transition-opacity duration-200 ${isChatOpen ? 'opacity-100' : 'opacity-0'}`}>
           <div className="flex items-center bg-white rounded-full pr-2">
             <input 
               type="text" 
@@ -719,9 +712,9 @@ const InvoiceProcessing = () => {
         {/* Left panel - Invoice list */}
         <aside 
           ref={leftPaneRef}
-          className={`relative border-r border-gray-200 flex flex-col transition-all duration-200 ${
+          className={`relative border-r border-gray-200 flex flex-col ${
             isLeftPaneCollapsed ? 'w-10 bg-gray-100' : 'bg-white'
-          }`}
+          } ${isResizing ? '' : 'transition-all duration-[1500ms]'}`}
           style={{ 
             width: isLeftPaneCollapsed ? '40px' : `${leftPaneWidth}px`,
             minWidth: isLeftPaneCollapsed ? '40px' : '150px',
@@ -732,7 +725,7 @@ const InvoiceProcessing = () => {
             <div className="p-2">
               <button 
                 onClick={toggleLeftPane} 
-                className="p-1 rounded hover:bg-blue-300 active:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-150"
+                className="p-1 rounded hover:bg-blue-300 active:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-[1500ms]"
               >
                 <ChevronRight size={18} />
               </button>
@@ -745,7 +738,7 @@ const InvoiceProcessing = () => {
                     Invoices <span className="text-sm text-gray-500 ml-1">(87)</span>
                   </h2>
                 <div className="md:hidden">
-                    <button onClick={toggleLeftPane} className="p-1 rounded hover:bg-blue-100 active:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-150">
+                    <button onClick={toggleLeftPane} className="p-1 rounded hover:bg-blue-100 active:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-[1500ms]">
                     <ChevronLeft size={18} />
                   </button>
                   </div>
@@ -766,7 +759,7 @@ const InvoiceProcessing = () => {
                   <div className="bg-gray-100 rounded-lg p-0.5 flex h-6">
                     <button
                       onClick={() => setActiveFilter('all')}
-                      className={`px-1.5 text-xs rounded-md transition-colors duration-150 flex-1 min-w-fit ${
+                      className={`px-1.5 text-xs rounded-md transition-colors duration-[1500ms] flex-1 min-w-fit ${
                         activeFilter === 'all'
                           ? 'bg-white shadow-sm text-gray-800'
                           : 'text-gray-600 hover:text-gray-800'
@@ -776,7 +769,7 @@ const InvoiceProcessing = () => {
                     </button>
                     <button
                       onClick={() => setActiveFilter('needs-assistance')}
-                      className={`px-1.5 text-xs rounded-md transition-colors duration-150 flex-1 min-w-fit ${
+                      className={`px-1.5 text-xs rounded-md transition-colors duration-[1500ms] flex-1 min-w-fit ${
                         activeFilter === 'needs-assistance'
                           ? 'bg-white shadow-sm text-red-600'
                           : 'text-gray-600 hover:text-red-600'
@@ -786,7 +779,7 @@ const InvoiceProcessing = () => {
                     </button>
                     <button
                       onClick={() => setActiveFilter('processing')}
-                      className={`px-1.5 text-xs rounded-md transition-colors duration-150 flex-1 min-w-fit ${
+                      className={`px-1.5 text-xs rounded-md transition-colors duration-[1500ms] flex-1 min-w-fit ${
                         activeFilter === 'processing'
                           ? 'bg-white shadow-sm text-blue-600'
                           : 'text-gray-600 hover:text-blue-600'
@@ -796,7 +789,7 @@ const InvoiceProcessing = () => {
                     </button>
                     <button
                       onClick={() => setActiveFilter('processed')}
-                      className={`px-1.5 text-xs rounded-md transition-colors duration-150 flex-1 min-w-fit ${
+                      className={`px-1.5 text-xs rounded-md transition-colors duration-[1500ms] flex-1 min-w-fit ${
                         activeFilter === 'processed'
                           ? 'bg-white shadow-sm text-green-600'
                           : 'text-gray-600 hover:text-green-600'
@@ -851,9 +844,9 @@ const InvoiceProcessing = () => {
         {/* Main content area - flexible to accommodate chat panel */}
         <div className="flex flex-1">
           {/* Middle panel - Invoice details */}
-          <main className="flex-1 flex flex-col bg-gray-50 border-r border-gray-200">
+          <main className={`flex-1 flex flex-col bg-gray-50 border-r border-gray-200 transition-all duration-300 ease-in-out ${isChatOpen ? 'w-[calc(100%-320px)]' : 'w-full'}`}>
             {selectedInvoice ? (
-              <div className={`flex flex-col h-full ${fadeState}`}>
+              <div className={`flex flex-col h-full transition-all duration-500 ease-in-out ${fadeState}`}>
                 <div className="p-4 border-b border-gray-200 flex flex-col h-full overflow-hidden">
                   {/* Header */}
                   <div className="flex justify-between items-center mb-4">
@@ -1352,70 +1345,68 @@ const InvoiceProcessing = () => {
       {currentPage === "invoices" ? renderInvoiceProcessingPage() : renderAnalysisPage()}
       
       {/* Side Menu Overlay */}
-      {isSideMenuOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex">
-          <div className="w-64 bg-white h-full flex flex-col animate-slide-in shadow-lg">
-            <div className="flex justify-end p-4">
+      <div className={`fixed inset-0 transition-opacity duration-300 ease-in-out z-50 flex ${isSideMenuOpen ? 'bg-black/50' : 'bg-transparent pointer-events-none'}`}>
+        <div className={`w-64 bg-white h-full flex flex-col transform transition-transform duration-300 ease-in-out shadow-lg ${isSideMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+          <div className="flex justify-end p-4">
+            <button 
+              className="p-1 rounded hover:bg-gray-100 active:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-150"
+              onClick={() => setIsSideMenuOpen(false)}
+            >
+              <X size={20} className="text-gray-600" />
+            </button>
+          </div>
+          
+          <div className="flex-1 flex flex-col">
+            <div className="p-2">
               <button 
-                className="p-1 rounded hover:bg-gray-100 active:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-150"
-                onClick={() => setIsSideMenuOpen(false)}
+                className={`w-full flex items-center p-3 rounded text-left ${
+                  currentPage === "invoices" 
+                    ? "border-l-4 border-blue-500 bg-blue-50 text-blue-700" 
+                    : "text-gray-700 hover:bg-gray-100"
+                }`}
+                onClick={() => {
+                  setCurrentPage("invoices");
+                  setIsSideMenuOpen(false);
+                }}
               >
-                <X size={20} className="text-gray-600" />
+                Invoices
+              </button>
+              <button 
+                className={`w-full flex items-center p-3 rounded text-left mt-1 ${
+                  currentPage === "analysis" 
+                    ? "border-l-4 border-blue-500 bg-blue-50 text-blue-700" 
+                    : "text-gray-700 hover:bg-gray-100"
+                }`}
+                onClick={() => {
+                  setCurrentPage("analysis");
+                  setIsSideMenuOpen(false);
+                }}
+              >
+                Analysis
               </button>
             </div>
-            
-            <div className="flex-1 flex flex-col">
-              <div className="p-2">
-                <button 
-                  className={`w-full flex items-center p-3 rounded text-left ${
-                    currentPage === "invoices" 
-                      ? "border-l-4 border-blue-500 bg-blue-50 text-blue-700" 
-                      : "text-gray-700 hover:bg-gray-100"
-                  }`}
-                  onClick={() => {
-                    setCurrentPage("invoices");
-                    setIsSideMenuOpen(false);
-                  }}
-                >
-                  Invoices
-                </button>
-                <button 
-                  className={`w-full flex items-center p-3 rounded text-left mt-1 ${
-                    currentPage === "analysis" 
-                      ? "border-l-4 border-blue-500 bg-blue-50 text-blue-700" 
-                      : "text-gray-700 hover:bg-gray-100"
-                  }`}
-                  onClick={() => {
-                    setCurrentPage("analysis");
-                    setIsSideMenuOpen(false);
-                  }}
-                >
-                  Analysis
-                </button>
-              </div>
-            </div>
-            
-            <div className="p-4 mt-auto border-t border-gray-200">
-              <div className="flex flex-col items-center">
-                <svg className="w-40 h-12" viewBox="0 0 220 70" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M30,10 Q45,5 60,30 Q70,45 55,60 Q35,70 20,55 Q10,45 30,10" fill="none" stroke="url(#gradient)" strokeWidth="6" />
-                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#F5A623" />
-                    <stop offset="100%" stopColor="#D0021B" />
-                  </linearGradient>
-                  <text x="75" y="30" fontFamily="Arial" fontSize="14" fontWeight="bold">AUTOMATION</text>
-                  <text x="75" y="45" fontFamily="Arial" fontSize="14" fontWeight="bold">ANYWHERE</text>
-                  <text x="75" y="60" fontFamily="Arial" fontSize="10" fill="#D0021B">Automation 360</text>
-                </svg>
-              </div>
+          </div>
+          
+          <div className="p-4 mt-auto border-t border-gray-200">
+            <div className="flex flex-col items-center">
+              <svg className="w-40 h-12" viewBox="0 0 220 70" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30,10 Q45,5 60,30 Q70,45 55,60 Q35,70 20,55 Q10,45 30,10" fill="none" stroke="url(#gradient)" strokeWidth="6" />
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#F5A623" />
+                  <stop offset="100%" stopColor="#D0021B" />
+                </linearGradient>
+                <text x="75" y="30" fontFamily="Arial" fontSize="14" fontWeight="bold">AUTOMATION</text>
+                <text x="75" y="45" fontFamily="Arial" fontSize="14" fontWeight="bold">ANYWHERE</text>
+                <text x="75" y="60" fontFamily="Arial" fontSize="10" fill="#D0021B">Automation 360</text>
+              </svg>
             </div>
           </div>
-          <div 
-            className="flex-1"
-            onClick={() => setIsSideMenuOpen(false)}
-          ></div>
         </div>
-      )}
+        <div 
+          className="flex-1"
+          onClick={() => setIsSideMenuOpen(false)}
+        ></div>
+      </div>
 
       {/* PDF Dialog Component */}
       <PdfViewerDialog isOpen={isPdfDialogOpen} onClose={() => setIsPdfDialogOpen(false)} />

@@ -53,7 +53,7 @@ npm install -g vercel
 vercel
 ```
 
-Your app will be deployed to a URL like: `https://your-project.vercel.app`
+Your app will be deployed to a URL like: `https://invoice-processing-sepia.vercel.app/`
 
 ## Project Structure
 
