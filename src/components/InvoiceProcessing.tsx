@@ -241,6 +241,9 @@ const InvoiceProcessing = () => {
   // Add new state for dialog
   const [isPdfDialogOpen, setIsPdfDialogOpen] = useState(false);
   
+  // Add new state for manual toggle
+  const [isManuallyClosed, setIsManuallyClosed] = useState(false);
+  
   // Handle initial mount
   useEffect(() => {
     setIsMounted(true);
@@ -264,20 +267,33 @@ const InvoiceProcessing = () => {
       setWindowWidth(currentWidth);
       checkNarrowView();
       
-      // Only auto-close chat on narrow screens if it was auto-opened
-      if (currentWidth < 1024 && windowWidth >= 1024) {
-        setIsChatOpen(false);
+      // Handle chat panel visibility based on viewport width
+      if (currentWidth >= 1024) {
+        if (!isChatOpen && !isManuallyClosed) {
+          setIsChatOpen(true);
+        }
+      } else {
+        if (isChatOpen) {
+          setIsChatOpen(false);
+        }
       }
     };
     
-    // Set initial window width
+    // Set initial window width and check chat panel state
     const initialWidth = window.innerWidth;
     setWindowWidth(initialWidth);
     checkNarrowView();
     
+    // Set initial chat panel state
+    if (initialWidth >= 1024 && !isChatOpen && !isManuallyClosed) {
+      setIsChatOpen(true);
+    } else if (initialWidth < 1024 && isChatOpen) {
+      setIsChatOpen(false);
+    }
+    
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [isLeftPaneCollapsed, leftPaneWidth, signedIn, isMounted, windowWidth]);
+  }, [isLeftPaneCollapsed, leftPaneWidth, signedIn, isMounted, windowWidth, isChatOpen, isManuallyClosed]);
   
   // Close menu when clicking outside
   useEffect(() => {
@@ -356,9 +372,13 @@ const InvoiceProcessing = () => {
 
   // Toggle chat visibility
   const toggleChat = () => {
-    // Always respect manual toggle regardless of window width
     const newIsChatOpen = !isChatOpen;
     setIsChatOpen(newIsChatOpen);
+    
+    // Only set manual close when explicitly closing the panel
+    if (!newIsChatOpen) {
+      setIsManuallyClosed(true);
+    }
     
     // Initialize chat messages when opening the panel
     if (newIsChatOpen && chatMessages.length === 0) {
@@ -369,9 +389,6 @@ const InvoiceProcessing = () => {
         }
       ]);
     }
-    
-    // Log the state change for debugging
-    console.log('Chat panel toggled:', newIsChatOpen);
   };
 
   // Toggle left pane collapse
@@ -418,8 +435,11 @@ const InvoiceProcessing = () => {
               <div className="flex justify-between items-center p-4 bg-blue-100 border-b border-blue-200">
                 <h3 className="font-medium text-gray-900">Assistant</h3>
                 <button 
-                  onClick={toggleChat} 
-                  className="text-gray-400 hover:text-gray-600 active:text-gray-800 focus:outline-none"
+                  onClick={() => {
+                    setIsChatOpen(false);
+                    setIsManuallyClosed(true);
+                  }}
+                  className="p-1 rounded-full hover:bg-blue-200 active:bg-blue-300 text-gray-400 hover:text-gray-600 active:text-gray-800 focus:outline-none"
                 >
                   <X size={16} />
                 </button>
