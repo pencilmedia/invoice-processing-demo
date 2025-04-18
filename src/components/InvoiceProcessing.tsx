@@ -9,6 +9,11 @@ interface Invoice {
   status: 'pending' | 'processing' | 'processed' | 'needs-assistance';
 }
 
+interface ChatMessage {
+  type: 'user' | 'assistant';
+  text: string;
+}
+
 // Move PdfViewerDialog outside the main component
 const PdfViewerDialog = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
   if (!isOpen) return null;
@@ -220,9 +225,7 @@ const InvoiceProcessing = () => {
   const [selectedTimePeriod, setSelectedTimePeriod] = useState("30 Days");
   const [isMounted, setIsMounted] = useState(false);
   const [chatInput, setChatInput] = useState('');
-  const [chatMessages, setChatMessages] = useState([
-    { type: 'assistant', text: `How can I help you with ${currentPage === "invoices" ? `invoice ${selectedInvoice?.id}` : "your analytics"}?` }
-  ]);
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   
   // Add new state for toggle with 'assisted' as default
   const [processingMode, setProcessingMode] = useState<'autonomous' | 'assisted'>('assisted');
@@ -261,10 +264,8 @@ const InvoiceProcessing = () => {
       setWindowWidth(currentWidth);
       checkNarrowView();
       
-      // Auto open/close chat based on viewport width
-      if (currentWidth >= 1024) {
-        setIsChatOpen(true);
-      } else {
+      // Only auto-close chat on narrow screens if it was auto-opened
+      if (currentWidth < 1024 && windowWidth >= 1024) {
         setIsChatOpen(false);
       }
     };
@@ -274,16 +275,9 @@ const InvoiceProcessing = () => {
     setWindowWidth(initialWidth);
     checkNarrowView();
     
-    // Set initial chat state based on viewport width
-    if (initialWidth >= 1024) {
-      setIsChatOpen(true);
-    } else {
-      setIsChatOpen(false);
-    }
-    
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [isLeftPaneCollapsed, leftPaneWidth, signedIn, isMounted]);
+  }, [isLeftPaneCollapsed, leftPaneWidth, signedIn, isMounted, windowWidth]);
   
   // Close menu when clicking outside
   useEffect(() => {
@@ -362,7 +356,22 @@ const InvoiceProcessing = () => {
 
   // Toggle chat visibility
   const toggleChat = () => {
-    setIsChatOpen(!isChatOpen);
+    // Always respect manual toggle regardless of window width
+    const newIsChatOpen = !isChatOpen;
+    setIsChatOpen(newIsChatOpen);
+    
+    // Initialize chat messages when opening the panel
+    if (newIsChatOpen && chatMessages.length === 0) {
+      setChatMessages([
+        { 
+          type: 'assistant', 
+          text: `How can I help you with ${currentPage === "invoices" ? `invoice ${selectedInvoice?.id}` : "your analytics"}?` 
+        }
+      ]);
+    }
+    
+    // Log the state change for debugging
+    console.log('Chat panel toggled:', newIsChatOpen);
   };
 
   // Toggle left pane collapse
@@ -401,76 +410,82 @@ const InvoiceProcessing = () => {
   // Render Chat Panel
   const renderChatPanel = () => {
     return (
-      <aside className={`w-80 bg-blue-50/50 flex flex-col h-full transform transition-all duration-300 ease-in-out ${isChatOpen ? 'translate-x-0 opacity-100 w-80' : 'translate-x-full opacity-0 w-0'}`}>
-        {/* Chat Header */}
-        <div className="flex justify-between items-center p-4 bg-blue-100 border-b border-blue-200">
-          <h3 className="font-medium text-gray-900">Assistant</h3>
-          <button 
-            onClick={toggleChat} 
-            className="text-gray-400 hover:text-gray-600 active:text-gray-800 focus:outline-none"
-          >
-            <X size={16} />
-          </button>
-        </div>
-
-        {/* Chat Messages */}
-        <div className={`flex-1 bg-blue-50/50 p-4 overflow-y-auto transition-opacity duration-200 ${isChatOpen ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="space-y-4">
-            <h2 className="text-xl font-semibold text-gray-900">What can I help with today?</h2>
-            <div className="flex flex-wrap gap-2">
-              {[1, 2, 3, 4, 5].map((num) => (
-                <button
-                  key={num}
-                  className="px-3 py-1 rounded-full bg-white text-gray-700 text-sm hover:bg-gray-50"
+      <div className={`h-full transition-all duration-300 ease-in-out ${isChatOpen ? 'w-80' : 'w-0'}`}>
+        <aside className="h-full bg-blue-50/50 flex flex-col">
+          {isChatOpen && (
+            <>
+              {/* Chat Header */}
+              <div className="flex justify-between items-center p-4 bg-blue-100 border-b border-blue-200">
+                <h3 className="font-medium text-gray-900">Assistant</h3>
+                <button 
+                  onClick={toggleChat} 
+                  className="text-gray-400 hover:text-gray-600 active:text-gray-800 focus:outline-none"
                 >
-                  Topic {num}
+                  <X size={16} />
                 </button>
-              ))}
-            </div>
-          </div>
-          {chatMessages.map((message, index) => (
-            <div 
-              key={index} 
-              className={`mt-4 ${
-                message.type === 'user' 
-                  ? 'ml-auto' 
-                  : ''
-              }`}
-            >
-              <div className={`rounded-2xl p-3 max-w-[85%] ${
-                message.type === 'user'
-                  ? 'bg-blue-600 text-white ml-auto'
-                  : 'bg-white text-gray-800'
-              }`}>
-                <p className="text-sm">{message.text}</p>
               </div>
-            </div>
-          ))}
-        </div>
 
-        {/* Chat Input */}
-        <div className={`p-4 border-t border-blue-200 transition-opacity duration-200 ${isChatOpen ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="flex items-center bg-white rounded-full pr-2">
-            <input 
-              type="text" 
-              value={chatInput}
-              onChange={(e) => setChatInput(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleChatSubmit()}
-              placeholder="Ask me anything..."
-              className="flex-1 bg-transparent px-4 py-2 text-sm focus:outline-none"
-            />
-            <button 
-              onClick={handleChatSubmit}
-              className="p-1 text-blue-600 hover:text-blue-700 active:text-blue-800 focus:outline-none"
-            >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M22 2L11 13" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M22 2L15 22L11 13L2 9L22 2Z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </aside>
+              {/* Chat Messages */}
+              <div className="flex-1 bg-blue-50/50 p-4 overflow-y-auto">
+                <div className="space-y-4">
+                  <h2 className="text-xl font-semibold text-gray-900">What can I help with today?</h2>
+                  <div className="flex flex-wrap gap-2">
+                    {[1, 2, 3, 4, 5].map((num) => (
+                      <button
+                        key={num}
+                        className="px-3 py-1 rounded-full bg-white text-gray-700 text-sm hover:bg-gray-50"
+                      >
+                        Topic {num}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                {chatMessages.map((message, index) => (
+                  <div 
+                    key={index} 
+                    className={`mt-4 ${
+                      message.type === 'user' 
+                        ? 'ml-auto' 
+                        : ''
+                    }`}
+                  >
+                    <div className={`rounded-2xl p-3 max-w-[85%] ${
+                      message.type === 'user'
+                        ? 'bg-blue-600 text-white ml-auto'
+                        : 'bg-white text-gray-800'
+                    }`}>
+                      <p className="text-sm">{message.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Chat Input */}
+              <div className="p-4 border-t border-blue-200">
+                <div className="flex items-center bg-white rounded-full pr-2">
+                  <input 
+                    type="text" 
+                    value={chatInput}
+                    onChange={(e) => setChatInput(e.target.value)}
+                    onKeyPress={(e) => e.key === 'Enter' && handleChatSubmit()}
+                    placeholder="Ask me anything..."
+                    className="flex-1 bg-transparent px-4 py-2 text-sm focus:outline-none"
+                  />
+                  <button 
+                    onClick={handleChatSubmit}
+                    className="p-1 text-blue-600 hover:text-blue-700 active:text-blue-800 focus:outline-none"
+                  >
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path d="M22 2L11 13" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M22 2L15 22L11 13L2 9L22 2Z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
+        </aside>
+      </div>
     );
   };
 
@@ -841,10 +856,10 @@ const InvoiceProcessing = () => {
           )}
         </aside>
 
-        {/* Main content area - flexible to accommodate chat panel */}
+        {/* Main content area with chat panel */}
         <div className="flex flex-1">
           {/* Middle panel - Invoice details */}
-          <main className={`flex-1 flex flex-col bg-gray-50 border-r border-gray-200 transition-all duration-300 ease-in-out ${isChatOpen ? 'w-[calc(100%-320px)]' : 'w-full'}`}>
+          <main className={`flex-1 flex flex-col bg-gray-50 border-r border-gray-200 transition-all duration-300 ease-in-out`}>
             {selectedInvoice ? (
               <div className={`flex flex-col h-full transition-all duration-500 ease-in-out ${fadeState}`}>
                 <div className="p-4 border-b border-gray-200 flex flex-col h-full overflow-hidden">
