@@ -660,6 +660,19 @@ const InvoiceProcessing = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isMenuOpen, signedIn]);
 
+  // Handle side menu close
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (isSideMenuOpen && !target.closest('.side-menu-container')) {
+        setIsSideMenuOpen(false);
+      }
+    };
+    
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isSideMenuOpen]);
+
   // Handle mouse events for resizing
   useEffect(() => {
     if (!signedIn) return;
@@ -2014,7 +2027,7 @@ const InvoiceProcessing = () => {
       
       {/* Side Menu Overlay */}
       <div className={`fixed inset-0 transition-opacity duration-300 ease-in-out z-50 flex ${isSideMenuOpen ? 'bg-black/50' : 'bg-transparent pointer-events-none'}`}>
-        <div className={`w-64 bg-white h-full flex flex-col transform transition-transform duration-300 ease-in-out shadow-lg ${isSideMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className={`w-64 bg-white h-full flex flex-col transform transition-transform duration-300 ease-in-out shadow-lg side-menu-container ${isSideMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
           <div className="flex justify-end p-4">
             <button 
               className="p-1 rounded hover:bg-gray-100 active:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-150"
@@ -2028,8 +2041,6 @@ const InvoiceProcessing = () => {
             <div className="p-2">
               {/* Side Menu Content */}
               <div className="p-4">
-                {/* Apps Section */}
-                <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wider mt-6">Apps</h3>
                 <div className="mt-2">
                   <button 
                     className={`w-full flex items-center p-3 rounded text-left ${
@@ -2056,36 +2067,6 @@ const InvoiceProcessing = () => {
                     }}
                   >
                     Insights
-                  </button>
-                </div>
-
-                {/* Solutions Section */}
-                <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wider mt-6">Solutions</h3>
-                <div className="mt-2">
-                  <button className="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 active:bg-gray-100 focus:outline-none transition-colors duration-150">
-                    Invoice Processing
-                  </button>
-                  <button className="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 active:bg-gray-100 focus:outline-none transition-colors duration-150">
-                    Billing
-                  </button>
-                  <button className="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 active:bg-gray-100 focus:outline-none transition-colors duration-150">
-                    Collections
-                  </button>
-                  <button className="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 active:bg-gray-100 focus:outline-none transition-colors duration-150">
-                    Customer Setup
-                  </button>
-                  <button className="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 active:bg-gray-100 focus:outline-none transition-colors duration-150">
-                    Monthly Close
-                  </button>
-                </div>
-
-                {/* Other Links */}
-                <div className="mt-6">
-                  <button className="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 active:bg-gray-100 focus:outline-none transition-colors duration-150">
-                    Settings
-                  </button>
-                  <button className="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 active:bg-gray-100 focus:outline-none transition-colors duration-150">
-                    Help
                   </button>
                 </div>
               </div>
