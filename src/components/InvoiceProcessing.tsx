@@ -1073,6 +1073,220 @@ const InvoiceProcessing = () => {
     );
   };
 
+  // Insights Page Content
+  const renderInsightsPage = () => {
+    return (
+      <div className="flex flex-1 overflow-hidden">
+        <main className="flex-1 flex flex-col bg-white overflow-y-auto">
+          <div className="p-6">
+            <h1 className="text-2xl font-bold text-gray-900">Insights</h1>
+            <p className="text-gray-600 mb-6">Monitor the metrics of your AI Solution.</p>
+            
+            {/* Time period filters */}
+            <div className="flex mb-8 space-x-4">
+              {["7 Days", "30 Days", "90 Days", "YTD"].map((period) => (
+                <button
+                  key={period}
+                  className={`px-3 py-1 rounded-md text-sm ${
+                    selectedTimePeriod === period 
+                      ? "bg-blue-100 text-blue-800 font-medium" 
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  }`}
+                  onClick={() => setSelectedTimePeriod(period)}
+                >
+                  {period}
+                </button>
+              ))}
+            </div>
+            
+            {/* Dashboard Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Line Chart Card - Top Left */}
+              <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h2 className="text-lg font-semibold text-gray-800">Title</h2>
+                    <p className="text-sm text-gray-500">Subtitle</p>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-xl font-bold">50.00%</span>
+                    <span className="ml-2 text-green-600 flex items-center text-sm">
+                      <svg className="w-3 h-3 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                      </svg>
+                      +7%
+                    </span>
+                  </div>
+                </div>
+                <div className="h-48 w-full">
+                  {/* SVG Line Chart */}
+                  <svg width="100%" height="100%" viewBox="0 0 400 200">
+                    {/* Chart axes */}
+                    <line x1="40" y1="10" x2="40" y2="180" stroke="#E5E7EB" strokeWidth="1" />
+                    <line x1="40" y1="180" x2="390" y2="180" stroke="#E5E7EB" strokeWidth="1" />
+                    
+                    {/* Y-axis labels */}
+                    <text x="35" y="20" textAnchor="end" fontSize="10" fill="#6B7280">1000</text>
+                    <text x="35" y="60" textAnchor="end" fontSize="10" fill="#6B7280">750</text>
+                    <text x="35" y="100" textAnchor="end" fontSize="10" fill="#6B7280">500</text>
+                    <text x="35" y="140" textAnchor="end" fontSize="10" fill="#6B7280">250</text>
+                    <text x="35" y="180" textAnchor="end" fontSize="10" fill="#6B7280">0</text>
+                    
+                    {/* X-axis labels */}
+                    <text x="40" y="195" textAnchor="middle" fontSize="10" fill="#6B7280">0</text>
+                    <text x="100" y="195" textAnchor="middle" fontSize="10" fill="#6B7280">1</text>
+                    <text x="160" y="195" textAnchor="middle" fontSize="10" fill="#6B7280">2</text>
+                    <text x="220" y="195" textAnchor="middle" fontSize="10" fill="#6B7280">3</text>
+                    <text x="280" y="195" textAnchor="middle" fontSize="10" fill="#6B7280">4</text>
+                    <text x="340" y="195" textAnchor="middle" fontSize="10" fill="#6B7280">5</text>
+                    
+                    {/* Blue line */}
+                    <path d="M40,140 L100,40 L160,120 L220,60 L280,60 L340,160" fill="none" stroke="#3B82F6" strokeWidth="2" />
+                    
+                    {/* Purple line */}
+                    <path d="M40,120 L100,140 L160,120 L220,80 L280,100 L340,110" fill="none" stroke="#8B5CF6" strokeWidth="2" />
+                  </svg>
+                </div>
+              </div>
+              
+              {/* Pie Chart Card - Top Right */}
+              <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h2 className="text-lg font-semibold text-gray-800">Title</h2>
+                    <p className="text-sm text-gray-500">Subtitle</p>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-xl font-bold">50.00%</span>
+                    <span className="ml-2 text-green-600 flex items-center text-sm">
+                      <svg className="w-3 h-3 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                      </svg>
+                      +7%
+                    </span>
+                  </div>
+                </div>
+                <div className="flex justify-center items-center h-48">
+                  {/* SVG Pie Chart */}
+                  <svg width="160" height="160" viewBox="0 0 160 160">
+                    <circle cx="80" cy="80" r="80" fill="white" />
+                    
+                    {/* Pie segments */}
+                    <path d="M80,80 L160,80 A80,80 0 0,1 80,160 Z" fill="#8B5CF6" />
+                    <path d="M80,80 L80,160 A80,80 0 0,1 0,80 Z" fill="#3B82F6" />
+                    <path d="M80,80 L0,80 A80,80 0 0,1 80,0 Z" fill="#F59E0B" />
+                    <path d="M80,80 L80,0 A80,80 0 0,1 160,80 Z" fill="#EF4444" />
+                    
+                    {/* Percentage labels */}
+                    <text x="120" y="40" textAnchor="middle" fontSize="14" fontWeight="bold" fill="white">40%</text>
+                    <text x="40" y="40" textAnchor="middle" fontSize="14" fontWeight="bold" fill="white">40%</text>
+                    <text x="40" y="120" textAnchor="middle" fontSize="14" fontWeight="bold" fill="white">40%</text>
+                    <text x="120" y="120" textAnchor="middle" fontSize="14" fontWeight="bold" fill="white">40%</text>
+                  </svg>
+                </div>
+              </div>
+              
+              {/* Bar Chart Card - Bottom Left */}
+              <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h2 className="text-lg font-semibold text-gray-800">Title</h2>
+                    <p className="text-sm text-gray-500">Subtitle</p>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-xl font-bold">50.00%</span>
+                    <span className="ml-2 text-green-600 flex items-center text-sm">
+                      <svg className="w-3 h-3 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                      </svg>
+                      +7%
+                    </span>
+                  </div>
+                </div>
+                <div className="h-48 w-full">
+                  {/* SVG Bar Chart */}
+                  <svg width="100%" height="100%" viewBox="0 0 400 200">
+                    {/* Chart axes */}
+                    <line x1="40" y1="10" x2="40" y2="180" stroke="#E5E7EB" strokeWidth="1" />
+                    <line x1="40" y1="180" x2="390" y2="180" stroke="#E5E7EB" strokeWidth="1" />
+                    
+                    {/* Y-axis labels */}
+                    <text x="35" y="20" textAnchor="end" fontSize="10" fill="#6B7280">500</text>
+                    <text x="35" y="60" textAnchor="end" fontSize="10" fill="#6B7280">400</text>
+                    <text x="35" y="100" textAnchor="end" fontSize="10" fill="#6B7280">300</text>
+                    <text x="35" y="140" textAnchor="end" fontSize="10" fill="#6B7280">200</text>
+                    <text x="35" y="180" textAnchor="end" fontSize="10" fill="#6B7280">0</text>
+                    
+                    {/* Bars */}
+                    <rect x="80" y="140" width="40" height="40" fill="#3B82F6" />
+                    <rect x="180" y="60" width="40" height="120" fill="#3B82F6" />
+                    <rect x="280" y="140" width="40" height="40" fill="#3B82F6" />
+                    
+                    {/* Bar labels */}
+                    <text x="100" y="130" textAnchor="middle" fontSize="14" fontWeight="bold" fill="white">40</text>
+                    <text x="200" y="110" textAnchor="middle" fontSize="14" fontWeight="bold" fill="white">40</text>
+                    <text x="300" y="130" textAnchor="middle" fontSize="14" fontWeight="bold" fill="white">40</text>
+                  </svg>
+                </div>
+              </div>
+              
+              {/* Line Chart Card - Bottom Right (duplicate of top left for layout) */}
+              <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h2 className="text-lg font-semibold text-gray-800">Title</h2>
+                    <p className="text-sm text-gray-500">Subtitle</p>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-xl font-bold">50.00%</span>
+                    <span className="ml-2 text-green-600 flex items-center text-sm">
+                      <svg className="w-3 h-3 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                      </svg>
+                      +7%
+                    </span>
+                  </div>
+                </div>
+                <div className="h-48 w-full">
+                  {/* SVG Line Chart (duplicate of first) */}
+                  <svg width="100%" height="100%" viewBox="0 0 400 200">
+                    {/* Chart axes */}
+                    <line x1="40" y1="10" x2="40" y2="180" stroke="#E5E7EB" strokeWidth="1" />
+                    <line x1="40" y1="180" x2="390" y2="180" stroke="#E5E7EB" strokeWidth="1" />
+                    
+                    {/* Y-axis labels */}
+                    <text x="35" y="20" textAnchor="end" fontSize="10" fill="#6B7280">1000</text>
+                    <text x="35" y="60" textAnchor="end" fontSize="10" fill="#6B7280">750</text>
+                    <text x="35" y="100" textAnchor="end" fontSize="10" fill="#6B7280">500</text>
+                    <text x="35" y="140" textAnchor="end" fontSize="10" fill="#6B7280">250</text>
+                    <text x="35" y="180" textAnchor="end" fontSize="10" fill="#6B7280">0</text>
+                    
+                    {/* X-axis labels */}
+                    <text x="40" y="195" textAnchor="middle" fontSize="10" fill="#6B7280">0</text>
+                    <text x="100" y="195" textAnchor="middle" fontSize="10" fill="#6B7280">1</text>
+                    <text x="160" y="195" textAnchor="middle" fontSize="10" fill="#6B7280">2</text>
+                    <text x="220" y="195" textAnchor="middle" fontSize="10" fill="#6B7280">3</text>
+                    <text x="280" y="195" textAnchor="middle" fontSize="10" fill="#6B7280">4</text>
+                    <text x="340" y="195" textAnchor="middle" fontSize="10" fill="#6B7280">5</text>
+                    
+                    {/* Blue line */}
+                    <path d="M40,140 L100,40 L160,120 L220,60 L280,60 L340,160" fill="none" stroke="#3B82F6" strokeWidth="2" />
+                    
+                    {/* Purple line */}
+                    <path d="M40,120 L100,140 L160,120 L220,80 L280,100 L340,110" fill="none" stroke="#8B5CF6" strokeWidth="2" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+        
+        {/* Chat panel */}
+        {renderChatPanel()}
+      </div>
+    );
+  };
+
   // Filter invoices based on search query and active filter
   const filteredInvoices = invoices.filter(invoice => {
     const matchesSearch = 
@@ -1229,312 +1443,328 @@ const InvoiceProcessing = () => {
         {/* Main content area with chat panel */}
         <div className="flex flex-1">
           {/* Middle panel - Invoice details */}
-          <main className={`flex-1 flex flex-col bg-gray-50 border-r border-gray-200 transition-all duration-300 ease-in-out`}>
+          <main className="flex-1 flex flex-col bg-gray-50 border-r border-gray-200">
             {selectedInvoice ? (
               <div className={`flex flex-col h-full transition-all duration-500 ease-in-out ${fadeState}`}>
-                <div className="p-4 border-b border-gray-200 flex flex-col h-full overflow-hidden">
-                  {/* Alert Banner with Buttons */}
-                  {selectedInvoice?.status === 'needs-assistance' && (
-                    <div className="bg-red-50 border border-red-100 rounded-lg px-3 py-2 mb-4">
-                      <div className="flex justify-between items-center">
-                        <div>
-                          <h3 className="text-xs font-medium text-red-800 mb-0.5">Action required at Step 3.</h3>
-                          <p className="text-xs text-red-700">Manual input required at Step 3.</p>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <button className="px-3 py-1.5 text-xs text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 transition-colors duration-150">
-                            Send Back
-                          </button>
-                          <button className="px-3 py-1.5 text-xs text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-150">
-                            Approve & Process
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                  {selectedInvoice?.status === 'processed' && (
-                    <div className="bg-green-50 border border-green-100 rounded-lg px-3 py-2 mb-4">
-                      <div className="flex justify-between items-center">
-                        <div>
-                          <p className="text-xs text-green-700">This invoice was processed autonomously by the Invoice AI Agent.</p>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Scrollable Content */}
-                  <div className="flex-1 overflow-y-auto">
-                    {/* White Card Container */}
-                    <div className="bg-white rounded-lg p-4 mb-4">
-                      {/* Invoice Number and Status */}
-                      <div className="flex justify-between items-start mb-4">
-                        <div>
-                          <div className="text-sm text-gray-500 mb-1">Invoice #</div>
-                          <div className="text-2xl font-semibold">{displayedInvoice.id}</div>
-                        </div>
-                        <span className={`px-3 py-1 text-sm rounded-full ${
-                          selectedInvoice?.status === 'needs-assistance' 
-                            ? 'bg-red-100 text-red-800' 
-                            : selectedInvoice?.status === 'processing'
-                            ? 'bg-blue-100 text-blue-800'
-                            : 'bg-green-100 text-green-800'
-                        }`}>
-                          {selectedInvoice?.status.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
-                        </span>
-                      </div>
-
-                      {/* Timeline in Gray Card */}
-                      <div className="bg-white rounded-lg p-4">
-                        <div className="relative">
-                          {/* Connecting line */}
-                          <div className="absolute left-0 right-0 h-[2px] top-3">
-                            <div className="h-full bg-[#E5E7EB]" />
-                            <div className={`h-full bg-[#10B981] absolute top-0 left-0 ${
-                              selectedInvoice?.status === 'needs-assistance' 
-                                ? 'w-[66%]' 
-                                : selectedInvoice?.status === 'processing'
-                                ? 'w-[100%]'
-                                : selectedInvoice?.status === 'processed'
-                                ? 'w-[100%]'
-                                : 'w-[40%]'
-                            }`} />
+                {!isChatOpen && (
+                  <div className="p-4 flex justify-end border-b border-gray-200">
+                    <button
+                      onClick={() => {
+                        setIsChatOpen(true);
+                        setIsManuallyClosed(false);
+                      }}
+                      className="flex items-center space-x-2 px-3 py-1.5 text-sm text-gray-600 rounded hover:bg-blue-50"
+                    >
+                      <MessageSquare size={14} />
+                      <span>Assistant</span>
+                    </button>
+                  </div>
+                )}
+                <div className="flex-1 overflow-y-auto">
+                  <div className="p-6">
+                    {/* Alert Banner with Buttons */}
+                    {selectedInvoice.status === 'needs-assistance' && (
+                      <div className="bg-red-50 rounded-lg p-4 mb-6">
+                        <div className="flex justify-between items-start">
+                          <div className="space-y-1">
+                            <p className="text-red-800">This invoice requires assistance</p>
+                            <p className="text-sm text-red-700">Please review the details and take appropriate action.</p>
                           </div>
-                          
-                          {/* Timeline steps */}
-                          <div className="relative flex justify-between">
-                            {[
-                              { 
-                                title: 'Document',
-                                subtitle: 'Extraction',
-                                status: 'completed'
-                              },
-                              { 
-                                title: '3-Way',
-                                subtitle: 'Matching',
-                                status: 'completed'
-                              },
-                              { 
-                                title: 'Payment',
-                                subtitle: 'Rules',
-                                status: selectedInvoice?.status === 'needs-assistance' 
-                                  ? 'current' 
-                                  : selectedInvoice?.status === 'processing'
-                                  ? 'completed'
-                                  : 'completed'
-                              },
-                              { 
-                                title: 'Payment',
-                                subtitle: 'Processed',
-                                status: selectedInvoice?.status === 'processing' 
-                                  ? 'current' 
-                                  : selectedInvoice?.status === 'processed'
-                                  ? 'completed'
-                                  : 'pending'
-                              }
-                            ].map((item, index) => (
-                              <div key={index} className="flex flex-col items-center">
-                                <div className={`w-6 h-6 rounded-full flex items-center justify-center relative z-10 ${
-                                  item.status === 'completed' ? 'bg-[#10B981]' :
-                                  item.status === 'current' ? 'bg-white border-2 border-[#E5E7EB]' :
-                                  'bg-white border-2 border-[#E5E7EB]'
-                                }`}>
-                                  {item.status === 'completed' ? (
-                                    <svg className="w-3.5 h-3.5 text-white" viewBox="0 0 20 20" fill="currentColor">
-                                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                    </svg>
-                                  ) : (
-                                    <div className={`w-1 h-1 rounded-full ${
-                                      item.status === 'current' ? 'bg-[#E5E7EB]' : 'bg-[#E5E7EB]'
-                                    }`} />
-                                  )}
-                                </div>
-                                <div className="mt-2 text-center">
-                                  <div className="text-xs font-medium text-gray-900">{item.title}</div>
-                                  <div className="text-xs font-medium text-gray-900">{item.subtitle}</div>
-                                </div>
-                              </div>
-                            ))}
+                          <div className="flex space-x-2">
+                            <button className="px-3 py-1 text-sm bg-white text-red-700 border border-red-300 rounded hover:bg-red-50">
+                              Send Back
+                            </button>
+                            <button className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">
+                              Approve & Process
+                            </button>
                           </div>
                         </div>
                       </div>
-                    </div>
-
-                    {/* Step Cards */}
-                    <div className="space-y-4">
-                      {/* Step 1 */}
-                      <div className="bg-white border border-gray-200 rounded-lg p-4">
-                        <div className="flex justify-between items-center mb-4">
+                    )}
+                    {selectedInvoice?.status === 'processed' && (
+                      <div className="bg-green-50 border border-green-100 rounded-lg px-3 py-2 mb-4">
+                        <div className="flex justify-between items-center">
                           <div>
-                            <h3 className="text-lg font-semibold mb-2">Document Extraction</h3>
+                            <p className="text-xs text-green-700">This invoice was processed autonomously by the Invoice AI Agent.</p>
                           </div>
-                          <span className="flex items-center text-gray-900 text-sm font-medium">
-                            <svg className="w-5 h-5 mr-1.5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
-                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                            </svg>
-                            Completed
-                          </span>
                         </div>
-                        <div className="grid grid-cols-2 gap-4 mb-4">
+                      </div>
+                    )}
+
+                    {/* Scrollable Content */}
+                    <div className="flex-1 overflow-y-auto">
+                      {/* White Card Container */}
+                      <div className="bg-white rounded-lg p-4 mb-4">
+                        {/* Invoice Number and Status */}
+                        <div className="flex justify-between items-start mb-4">
                           <div>
                             <div className="text-sm text-gray-500 mb-1">Invoice #</div>
-                            <div className="bg-gray-50 rounded p-2 text-sm">{selectedInvoice?.id}</div>
+                            <div className="text-2xl font-semibold">{displayedInvoice.id}</div>
                           </div>
-                          <div>
-                            <div className="text-sm text-gray-500 mb-1">Vendor</div>
-                            <div className="bg-gray-50 rounded p-2 text-sm">{selectedInvoice?.company}</div>
-                          </div>
-                          <div>
-                            <div className="text-sm text-gray-500 mb-1">Total</div>
-                            <div className="bg-gray-50 rounded p-2 text-sm">{selectedInvoice?.amount}</div>
-                          </div>
-                          <div>
-                            <div className="text-sm text-gray-500 mb-1">Tax Amount</div>
-                            <div className="bg-gray-50 rounded p-2 text-sm">
-                              {selectedInvoice?.amount 
-                                ? `$${(parseFloat(selectedInvoice.amount.replace(/[^0-9.-]+/g, '')) * 0.08).toFixed(2)}`
-                                : '$0.00'}
+                          <span className={`px-3 py-1 text-sm rounded-full ${
+                            selectedInvoice?.status === 'needs-assistance' 
+                              ? 'bg-red-100 text-red-800' 
+                              : selectedInvoice?.status === 'processing'
+                              ? 'bg-blue-100 text-blue-800'
+                              : 'bg-green-100 text-green-800'
+                          }`}>
+                            {selectedInvoice?.status.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                          </span>
+                        </div>
+
+                        {/* Timeline in Gray Card */}
+                        <div className="bg-white rounded-lg p-4">
+                          <div className="relative">
+                            {/* Connecting line */}
+                            <div className="absolute left-0 right-0 h-[2px] top-3">
+                              <div className="h-full bg-[#E5E7EB]" />
+                              <div className={`h-full bg-[#10B981] absolute top-0 left-0 ${
+                                selectedInvoice?.status === 'needs-assistance' 
+                                  ? 'w-[66%]' 
+                                  : selectedInvoice?.status === 'processing'
+                                  ? 'w-[100%]'
+                                  : selectedInvoice?.status === 'processed'
+                                  ? 'w-[100%]'
+                                  : 'w-[40%]'
+                              }`} />
+                            </div>
+                            
+                            {/* Timeline steps */}
+                            <div className="relative flex justify-between">
+                              {[
+                                { 
+                                  title: 'Document',
+                                  subtitle: 'Extraction',
+                                  status: 'completed'
+                                },
+                                { 
+                                  title: '3-Way',
+                                  subtitle: 'Matching',
+                                  status: 'completed'
+                                },
+                                { 
+                                  title: 'Payment',
+                                  subtitle: 'Rules',
+                                  status: selectedInvoice?.status === 'needs-assistance' 
+                                    ? 'current' 
+                                    : selectedInvoice?.status === 'processing'
+                                    ? 'completed'
+                                    : 'completed'
+                                },
+                                { 
+                                  title: 'Payment',
+                                  subtitle: 'Processed',
+                                  status: selectedInvoice?.status === 'processing' 
+                                    ? 'current' 
+                                    : selectedInvoice?.status === 'processed'
+                                    ? 'completed'
+                                    : 'pending'
+                                }
+                              ].map((item, index) => (
+                                <div key={index} className="flex flex-col items-center">
+                                  <div className={`w-6 h-6 rounded-full flex items-center justify-center relative z-10 ${
+                                    item.status === 'completed' ? 'bg-[#10B981]' :
+                                    item.status === 'current' ? 'bg-white border-2 border-[#E5E7EB]' :
+                                    'bg-white border-2 border-[#E5E7EB]'
+                                  }`}>
+                                    {item.status === 'completed' ? (
+                                      <svg className="w-3.5 h-3.5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                      </svg>
+                                    ) : (
+                                      <div className={`w-1 h-1 rounded-full ${
+                                        item.status === 'current' ? 'bg-[#E5E7EB]' : 'bg-[#E5E7EB]'
+                                      }`} />
+                                    )}
+                                  </div>
+                                  <div className="mt-2 text-center">
+                                    <div className="text-xs font-medium text-gray-900">{item.title}</div>
+                                    <div className="text-xs font-medium text-gray-900">{item.subtitle}</div>
+                                  </div>
+                                </div>
+                              ))}
                             </div>
                           </div>
                         </div>
-                        <button 
-                          onClick={() => setIsPdfDialogOpen(true)}
-                          className="inline-flex items-center px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50"
-                        >
-                          <span className="mr-2">Invoice-tiff.pdf</span>
-                          <svg className="w-4 h-4 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
-                        </button>
                       </div>
 
-                      {/* Step 2 */}
-                      <div className="bg-white border border-gray-200 rounded-lg p-4">
-                        <div className="flex justify-between items-center mb-4">
-                          <div>
-                            <h3 className="text-lg font-semibold">3-Way Matching</h3>
+                      {/* Step Cards */}
+                      <div className="space-y-4">
+                        {/* Step 1 */}
+                        <div className="bg-white border border-gray-200 rounded-lg p-4">
+                          <div className="flex justify-between items-center mb-4">
+                            <div>
+                              <h3 className="text-lg font-semibold mb-2">Document Extraction</h3>
+                            </div>
+                            <span className="flex items-center text-gray-900 text-sm font-medium">
+                              <svg className="w-5 h-5 mr-1.5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                              Completed
+                            </span>
                           </div>
-                          <span className="flex items-center text-gray-900 text-sm font-medium">
-                            <svg className="w-5 h-5 mr-1.5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
-                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          <div className="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                              <div className="text-sm text-gray-500 mb-1">Invoice #</div>
+                              <div className="bg-gray-50 rounded p-2 text-sm">{selectedInvoice?.id}</div>
+                            </div>
+                            <div>
+                              <div className="text-sm text-gray-500 mb-1">Vendor</div>
+                              <div className="bg-gray-50 rounded p-2 text-sm">{selectedInvoice?.company}</div>
+                            </div>
+                            <div>
+                              <div className="text-sm text-gray-500 mb-1">Total</div>
+                              <div className="bg-gray-50 rounded p-2 text-sm">{selectedInvoice?.amount}</div>
+                            </div>
+                            <div>
+                              <div className="text-sm text-gray-500 mb-1">Tax Amount</div>
+                              <div className="bg-gray-50 rounded p-2 text-sm">
+                                {selectedInvoice?.amount 
+                                  ? `$${(parseFloat(selectedInvoice.amount.replace(/[^0-9.-]+/g, '')) * 0.08).toFixed(2)}`
+                                  : '$0.00'}
+                              </div>
+                            </div>
+                          </div>
+                          <button 
+                            onClick={() => setIsPdfDialogOpen(true)}
+                            className="inline-flex items-center px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50"
+                          >
+                            <span className="mr-2">Invoice-tiff.pdf</span>
+                            <svg className="w-4 h-4 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                             </svg>
-                            Completed
-                          </span>
+                          </button>
                         </div>
-                        <div className="grid grid-cols-2 gap-4">
-                          <div>
-                            <div className="text-sm text-gray-500 mb-1">PO #</div>
-                            <div className="bg-gray-50 rounded p-2 text-sm">PO-{selectedInvoice?.id.split('-')[2]}-001</div>
-                          </div>
-                          <div>
-                            <div className="text-sm text-gray-500 mb-1">Item Quantity</div>
-                            <div className="bg-gray-50 rounded p-2 text-sm">{Math.floor(Math.random() * 100) + 1}</div>
-                          </div>
-                          <div>
-                            <div className="text-sm text-gray-500 mb-1">Total Price</div>
-                            <div className="bg-gray-50 rounded p-2 text-sm">{selectedInvoice?.amount}</div>
-                          </div>
-                        </div>
-                      </div>
 
-                      {/* Step 3 */}
-                      <div className="bg-white border border-gray-200 rounded-lg p-4">
-                        <div className="flex justify-between items-center mb-4">
-                          <div>
-                            <h3 className="text-lg font-semibold">Payment Rules</h3>
-                          </div>
-                          <span className="flex items-center text-gray-900 text-sm font-medium">
-                            {selectedInvoice?.status === 'processed' || selectedInvoice?.status === 'processing' ? (
-                              <>
-                                <svg className="w-5 h-5 mr-1.5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
-                                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                </svg>
-                                Completed
-                              </>
-                            ) : (
-                              <>
-                                <span className="w-2 h-2 bg-yellow-400 rounded-full mr-1.5"></span>
-                                Incomplete
-                              </>
-                            )}
-                          </span>
-                        </div>
-                        <div className="grid grid-cols-2 gap-6">
-                          <div>
-                            <div className="text-sm text-gray-700 mb-2">Below threshold amount</div>
-                            <div className="flex space-x-4">
-                              <label className="flex items-center">
-                                <input type="radio" name="threshold" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status !== 'needs-assistance'} />
-                                <span className="ml-2 text-sm">Yes</span>
-                              </label>
-                              <label className="flex items-center">
-                                <input type="radio" name="threshold" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status === 'needs-assistance'} />
-                                <span className="ml-2 text-sm">No</span>
-                              </label>
+                        {/* Step 2 */}
+                        <div className="bg-white border border-gray-200 rounded-lg p-4">
+                          <div className="flex justify-between items-center mb-4">
+                            <div>
+                              <h3 className="text-lg font-semibold">3-Way Matching</h3>
                             </div>
+                            <span className="flex items-center text-gray-900 text-sm font-medium">
+                              <svg className="w-5 h-5 mr-1.5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                              Completed
+                            </span>
                           </div>
-                          <div>
-                            <div className="text-sm text-gray-700 mb-2">Verified payment terms</div>
-                            <div className="flex space-x-4">
-                              <label className="flex items-center">
-                                <input type="radio" name="payment_terms" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status !== 'needs-assistance'} />
-                                <span className="ml-2 text-sm">Yes</span>
-                              </label>
-                              <label className="flex items-center">
-                                <input type="radio" name="payment_terms" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status === 'needs-assistance'} />
-                                <span className="ml-2 text-sm">No</span>
-                              </label>
+                          <div className="grid grid-cols-2 gap-4">
+                            <div>
+                              <div className="text-sm text-gray-500 mb-1">PO #</div>
+                              <div className="bg-gray-50 rounded p-2 text-sm">PO-{selectedInvoice?.id.split('-')[2]}-001</div>
+                            </div>
+                            <div>
+                              <div className="text-sm text-gray-500 mb-1">Item Quantity</div>
+                              <div className="bg-gray-50 rounded p-2 text-sm">{Math.floor(Math.random() * 100) + 1}</div>
+                            </div>
+                            <div>
+                              <div className="text-sm text-gray-500 mb-1">Total Price</div>
+                              <div className="bg-gray-50 rounded p-2 text-sm">{selectedInvoice?.amount}</div>
                             </div>
                           </div>
                         </div>
-                      </div>
 
-                      {/* Step 4 */}
-                      <div className="bg-white border border-gray-200 rounded-lg p-4">
-                        <div className="flex justify-between items-center mb-4">
-                          <div>
-                            <h3 className="text-lg font-semibold">Payment Processed</h3>
+                        {/* Step 3 */}
+                        <div className="bg-white border border-gray-200 rounded-lg p-4">
+                          <div className="flex justify-between items-center mb-4">
+                            <div>
+                              <h3 className="text-lg font-semibold">Payment Rules</h3>
+                            </div>
+                            <span className="flex items-center text-gray-900 text-sm font-medium">
+                              {selectedInvoice?.status === 'processed' || selectedInvoice?.status === 'processing' ? (
+                                <>
+                                  <svg className="w-5 h-5 mr-1.5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                  </svg>
+                                  Completed
+                                </>
+                              ) : (
+                                <>
+                                  <span className="w-2 h-2 bg-yellow-400 rounded-full mr-1.5"></span>
+                                  Incomplete
+                                </>
+                              )}
+                            </span>
                           </div>
-                          <span className="flex items-center text-gray-900 text-sm font-medium">
-                            {selectedInvoice?.status === 'processed' ? (
-                              <>
-                                <svg className="w-5 h-5 mr-1.5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
-                                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                </svg>
-                                Completed
-                              </>
-                            ) : (
-                              <>
-                                <span className="w-2 h-2 bg-yellow-400 rounded-full mr-1.5"></span>
-                                Incomplete
-                              </>
-                            )}
-                          </span>
-                        </div>
-                        <div className="grid grid-cols-2 gap-6">
-                          <div>
-                            <div className="text-sm text-gray-700 mb-2">Payment posted</div>
-                            <div className="flex space-x-4">
-                              <label className="flex items-center">
-                                <input type="radio" name="payment_posted" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status !== 'needs-assistance'} />
-                                <span className="ml-2 text-sm">Yes</span>
-                              </label>
-                              <label className="flex items-center">
-                                <input type="radio" name="payment_posted" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status === 'needs-assistance'} />
-                                <span className="ml-2 text-sm">No</span>
-                              </label>
+                          <div className="grid grid-cols-2 gap-6">
+                            <div>
+                              <div className="text-sm text-gray-700 mb-2">Below threshold amount</div>
+                              <div className="flex space-x-4">
+                                <label className="flex items-center">
+                                  <input type="radio" name="threshold" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status !== 'needs-assistance'} />
+                                  <span className="ml-2 text-sm">Yes</span>
+                                </label>
+                                <label className="flex items-center">
+                                  <input type="radio" name="threshold" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status === 'needs-assistance'} />
+                                  <span className="ml-2 text-sm">No</span>
+                                </label>
+                              </div>
+                            </div>
+                            <div>
+                              <div className="text-sm text-gray-700 mb-2">Verified payment terms</div>
+                              <div className="flex space-x-4">
+                                <label className="flex items-center">
+                                  <input type="radio" name="payment_terms" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status !== 'needs-assistance'} />
+                                  <span className="ml-2 text-sm">Yes</span>
+                                </label>
+                                <label className="flex items-center">
+                                  <input type="radio" name="payment_terms" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status === 'needs-assistance'} />
+                                  <span className="ml-2 text-sm">No</span>
+                                </label>
+                              </div>
                             </div>
                           </div>
-                          <div>
-                            <div className="text-sm text-gray-700 mb-2">Notification sent to vendor</div>
-                            <div className="flex space-x-4">
-                              <label className="flex items-center">
-                                <input type="radio" name="notification_sent" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status !== 'needs-assistance'} />
-                                <span className="ml-2 text-sm">Yes</span>
-                              </label>
-                              <label className="flex items-center">
-                                <input type="radio" name="notification_sent" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status === 'needs-assistance'} />
-                                <span className="ml-2 text-sm">No</span>
-                              </label>
+                        </div>
+
+                        {/* Step 4 */}
+                        <div className="bg-white border border-gray-200 rounded-lg p-4">
+                          <div className="flex justify-between items-center mb-4">
+                            <div>
+                              <h3 className="text-lg font-semibold">Payment Processed</h3>
+                            </div>
+                            <span className="flex items-center text-gray-900 text-sm font-medium">
+                              {selectedInvoice?.status === 'processed' ? (
+                                <>
+                                  <svg className="w-5 h-5 mr-1.5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                  </svg>
+                                  Completed
+                                </>
+                              ) : (
+                                <>
+                                  <span className="w-2 h-2 bg-yellow-400 rounded-full mr-1.5"></span>
+                                  Incomplete
+                                </>
+                              )}
+                            </span>
+                          </div>
+                          <div className="grid grid-cols-2 gap-6">
+                            <div>
+                              <div className="text-sm text-gray-700 mb-2">Payment posted</div>
+                              <div className="flex space-x-4">
+                                <label className="flex items-center">
+                                  <input type="radio" name="payment_posted" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status !== 'needs-assistance'} />
+                                  <span className="ml-2 text-sm">Yes</span>
+                                </label>
+                                <label className="flex items-center">
+                                  <input type="radio" name="payment_posted" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status === 'needs-assistance'} />
+                                  <span className="ml-2 text-sm">No</span>
+                                </label>
+                              </div>
+                            </div>
+                            <div>
+                              <div className="text-sm text-gray-700 mb-2">Notification sent to vendor</div>
+                              <div className="flex space-x-4">
+                                <label className="flex items-center">
+                                  <input type="radio" name="notification_sent" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status !== 'needs-assistance'} />
+                                  <span className="ml-2 text-sm">Yes</span>
+                                </label>
+                                <label className="flex items-center">
+                                  <input type="radio" name="notification_sent" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status === 'needs-assistance'} />
+                                  <span className="ml-2 text-sm">No</span>
+                                </label>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -1724,7 +1954,7 @@ const InvoiceProcessing = () => {
               <div className="absolute right-0 mt-1 w-64 bg-white rounded-lg shadow-lg py-3 z-10">
                 {/* Header Section */}
                 <div className="px-4 pb-2">
-                  <h3 className="text-sm text-gray-600">Discover More AI Solutions</h3>
+                  <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wider mt-2.5">Discover More AI Solutions</h3>
                 </div>
                 
                 {/* Solutions Lab Link */}
@@ -1745,7 +1975,7 @@ const InvoiceProcessing = () => {
 
                 {/* My Solutions Section */}
                 <div className="px-4 pb-2">
-                  <h3 className="text-sm text-gray-600">My Solutions</h3>
+                  <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wider mt-2.5">My Solutions</h3>
                 </div>
 
                 {/* Solution Links */}
@@ -1780,7 +2010,7 @@ const InvoiceProcessing = () => {
       </header>
 
       {/* Main Content Based on Current Page */}
-      {currentPage === "invoices" ? renderInvoiceProcessingPage() : renderAnalysisPage()}
+      {currentPage === "invoices" ? renderInvoiceProcessingPage() : renderInsightsPage()}
       
       {/* Side Menu Overlay */}
       <div className={`fixed inset-0 transition-opacity duration-300 ease-in-out z-50 flex ${isSideMenuOpen ? 'bg-black/50' : 'bg-transparent pointer-events-none'}`}>
@@ -1796,32 +2026,69 @@ const InvoiceProcessing = () => {
           
           <div className="flex-1 flex flex-col">
             <div className="p-2">
-              <button 
-                className={`w-full flex items-center p-3 rounded text-left ${
-                  currentPage === "invoices" 
-                    ? "border-l-4 border-blue-500 bg-blue-50 text-blue-700" 
-                    : "text-gray-700 hover:bg-gray-100"
-                }`}
-                onClick={() => {
-                  setCurrentPage("invoices");
-                  setIsSideMenuOpen(false);
-                }}
-              >
-                Invoices
-              </button>
-              <button 
-                className={`w-full flex items-center p-3 rounded text-left mt-1 ${
-                  currentPage === "analysis" 
-                    ? "border-l-4 border-blue-500 bg-blue-50 text-blue-700" 
-                    : "text-gray-700 hover:bg-gray-100"
-                }`}
-                onClick={() => {
-                  setCurrentPage("analysis");
-                  setIsSideMenuOpen(false);
-                }}
-              >
-                Analysis
-              </button>
+              {/* Side Menu Content */}
+              <div className="p-4">
+                {/* Apps Section */}
+                <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wider mt-6">Apps</h3>
+                <div className="mt-2">
+                  <button 
+                    className={`w-full flex items-center p-3 rounded text-left ${
+                      currentPage === "invoices" 
+                        ? "border-l-4 border-blue-500 bg-blue-50 text-blue-700" 
+                        : "text-gray-700 hover:bg-gray-100"
+                    }`}
+                    onClick={() => {
+                      setCurrentPage("invoices");
+                      setIsSideMenuOpen(false);
+                    }}
+                  >
+                    Invoice Processing
+                  </button>
+                  <button 
+                    className={`w-full flex items-center p-3 rounded text-left mt-1 ${
+                      currentPage === "insights" 
+                        ? "border-l-4 border-blue-500 bg-blue-50 text-blue-700" 
+                        : "text-gray-700 hover:bg-gray-100"
+                    }`}
+                    onClick={() => {
+                      setCurrentPage("insights");
+                      setIsSideMenuOpen(false);
+                    }}
+                  >
+                    Insights
+                  </button>
+                </div>
+
+                {/* Solutions Section */}
+                <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wider mt-6">Solutions</h3>
+                <div className="mt-2">
+                  <button className="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 active:bg-gray-100 focus:outline-none transition-colors duration-150">
+                    Invoice Processing
+                  </button>
+                  <button className="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 active:bg-gray-100 focus:outline-none transition-colors duration-150">
+                    Billing
+                  </button>
+                  <button className="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 active:bg-gray-100 focus:outline-none transition-colors duration-150">
+                    Collections
+                  </button>
+                  <button className="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 active:bg-gray-100 focus:outline-none transition-colors duration-150">
+                    Customer Setup
+                  </button>
+                  <button className="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 active:bg-gray-100 focus:outline-none transition-colors duration-150">
+                    Monthly Close
+                  </button>
+                </div>
+
+                {/* Other Links */}
+                <div className="mt-6">
+                  <button className="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 active:bg-gray-100 focus:outline-none transition-colors duration-150">
+                    Settings
+                  </button>
+                  <button className="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 active:bg-gray-100 focus:outline-none transition-colors duration-150">
+                    Help
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
           
