@@ -142,7 +142,7 @@ const InvoiceProcessing = () => {
       company: 'XYZ Enterprises', 
       amount: '$2,156.00', 
       date: 'Duis aute irure dolor in reprehenderit.', 
-      status: 'needs-assistance' 
+      status: 'processing' 
     },
     { 
       id: 'INV-2025-005', 
@@ -163,7 +163,7 @@ const InvoiceProcessing = () => {
       company: 'EcoSmart Solutions', 
       amount: '$3,299.99', 
       date: 'Sustainable technology implementations.', 
-      status: 'needs-assistance' 
+      status: 'processing' 
     },
     { 
       id: 'INV-2025-008', 
@@ -206,6 +206,356 @@ const InvoiceProcessing = () => {
       amount: '$12,450.00', 
       date: 'Automation system deployment.', 
       status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-014', 
+      company: 'Nexus Logistics', 
+      amount: '$5,678.90', 
+      date: 'Supply chain optimization services.', 
+      status: 'needs-assistance' 
+    },
+    { 
+      id: 'INV-2025-015', 
+      company: 'SolarEdge Energy', 
+      amount: '$15,230.00', 
+      date: 'Renewable energy solutions.', 
+      status: 'processed' 
+    },
+    { 
+      id: 'INV-2025-016', 
+      company: 'FinTech Global', 
+      amount: '$8,945.25', 
+      date: 'Financial technology services.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-017', 
+      company: 'HealthCare Plus', 
+      amount: '$23,450.00', 
+      date: 'Medical equipment and supplies.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-018', 
+      company: 'EduTech Solutions', 
+      amount: '$6,780.50', 
+      date: 'Educational technology platforms.', 
+      status: 'processed' 
+    },
+    { 
+      id: 'INV-2025-019', 
+      company: 'AgriTech Innovations', 
+      amount: '$9,875.25', 
+      date: 'Agricultural technology solutions.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-020', 
+      company: 'CyberShield Security', 
+      amount: '$12,345.00', 
+      date: 'Cybersecurity services.', 
+      status: 'needs-assistance' 
+    },
+    { 
+      id: 'INV-2025-021', 
+      company: 'GreenBuild Construction', 
+      amount: '$45,678.90', 
+      date: 'Sustainable construction materials.', 
+      status: 'processed' 
+    },
+    { 
+      id: 'INV-2025-022', 
+      company: 'DataMine Analytics', 
+      amount: '$7,890.25', 
+      date: 'Big data analysis services.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-023', 
+      company: 'SmartHome Systems', 
+      amount: '$15,670.00', 
+      date: 'Home automation solutions.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-024', 
+      company: 'AutoTech Motors', 
+      amount: '$32,450.00', 
+      date: 'Automotive technology components.', 
+      status: 'processed' 
+    },
+    { 
+      id: 'INV-2025-025', 
+      company: 'FoodTech Solutions', 
+      amount: '$8,765.50', 
+      date: 'Food processing technology.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-026', 
+      company: 'RetailTech Systems', 
+      amount: '$12,345.00', 
+      date: 'Retail management software.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-027', 
+      company: 'MediaStream Networks', 
+      amount: '$18,765.25', 
+      date: 'Digital media distribution.', 
+      status: 'processed' 
+    },
+    { 
+      id: 'INV-2025-028', 
+      company: 'TravelTech Services', 
+      amount: '$9,876.50', 
+      date: 'Travel industry solutions.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-029', 
+      company: 'SportsTech Innovations', 
+      amount: '$15,432.00', 
+      date: 'Sports technology equipment.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-030', 
+      company: 'FashionTech Designs', 
+      amount: '$23,456.75', 
+      date: 'Fashion industry technology.', 
+      status: 'processed' 
+    },
+    { 
+      id: 'INV-2025-031', 
+      company: 'PetTech Solutions', 
+      amount: '$7,654.25', 
+      date: 'Pet care technology.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-032', 
+      company: 'LegalTech Systems', 
+      amount: '$19,876.50', 
+      date: 'Legal industry software.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-033', 
+      company: 'RealEstate Tech', 
+      amount: '$28,765.00', 
+      date: 'Real estate technology.', 
+      status: 'processed' 
+    },
+    { 
+      id: 'INV-2025-034', 
+      company: 'MusicTech Studios', 
+      amount: '$12,345.75', 
+      date: 'Music production technology.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-035', 
+      company: 'GamingTech Solutions', 
+      amount: '$15,678.25', 
+      date: 'Gaming industry technology.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-036', 
+      company: 'FitnessTech Systems', 
+      amount: '$9,876.50', 
+      date: 'Fitness technology equipment.', 
+      status: 'processed' 
+    },
+    { 
+      id: 'INV-2025-037', 
+      company: 'BeautyTech Innovations', 
+      amount: '$7,654.25', 
+      date: 'Beauty industry technology.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-038', 
+      company: 'ArtTech Studios', 
+      amount: '$12,345.00', 
+      date: 'Digital art technology.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-039', 
+      company: 'SpaceTech Systems', 
+      amount: '$45,678.90', 
+      date: 'Space technology solutions.', 
+      status: 'processed' 
+    },
+    { 
+      id: 'INV-2025-040', 
+      company: 'OceanTech Solutions', 
+      amount: '$23,456.75', 
+      date: 'Marine technology equipment.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-041', 
+      company: 'MiningTech Systems', 
+      amount: '$34,567.25', 
+      date: 'Mining industry technology.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-042', 
+      company: 'ForestTech Solutions', 
+      amount: '$12,345.50', 
+      date: 'Forestry technology equipment.', 
+      status: 'processed' 
+    },
+    { 
+      id: 'INV-2025-043', 
+      company: 'WeatherTech Systems', 
+      amount: '$9,876.25', 
+      date: 'Weather monitoring technology.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-044', 
+      company: 'WaterTech Solutions', 
+      amount: '$15,678.50', 
+      date: 'Water treatment technology.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-045', 
+      company: 'AirTech Systems', 
+      amount: '$23,456.75', 
+      date: 'Air quality technology.', 
+      status: 'processed' 
+    },
+    { 
+      id: 'INV-2025-046', 
+      company: 'WasteTech Solutions', 
+      amount: '$12,345.25', 
+      date: 'Waste management technology.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-047', 
+      company: 'EnergyTech Systems', 
+      amount: '$34,567.50', 
+      date: 'Energy management technology.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-048', 
+      company: 'TransportTech Solutions', 
+      amount: '$45,678.25', 
+      date: 'Transportation technology.', 
+      status: 'processed' 
+    },
+    { 
+      id: 'INV-2025-049', 
+      company: 'ConstructionTech Systems', 
+      amount: '$56,789.00', 
+      date: 'Construction technology.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-050', 
+      company: 'ManufacturingTech Solutions', 
+      amount: '$67,890.25', 
+      date: 'Manufacturing technology.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-051', 
+      company: 'PharmaTech Systems', 
+      amount: '$78,901.50', 
+      date: 'Pharmaceutical technology.', 
+      status: 'processed' 
+    },
+    { 
+      id: 'INV-2025-052', 
+      company: 'BioTech Solutions', 
+      amount: '$89,012.75', 
+      date: 'Biotechnology equipment.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-053', 
+      company: 'ChemTech Systems', 
+      amount: '$90,123.00', 
+      date: 'Chemical technology.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-054', 
+      company: 'PhysicsTech Solutions', 
+      amount: '$12,345.25', 
+      date: 'Physics research equipment.', 
+      status: 'processed' 
+    },
+    { 
+      id: 'INV-2025-055', 
+      company: 'MathTech Systems', 
+      amount: '$23,456.50', 
+      date: 'Mathematical software.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-056', 
+      company: 'GeoTech Solutions', 
+      amount: '$34,567.75', 
+      date: 'Geological technology.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-057', 
+      company: 'AstroTech Systems', 
+      amount: '$45,678.00', 
+      date: 'Astronomy equipment.', 
+      status: 'processed' 
+    },
+    { 
+      id: 'INV-2025-058', 
+      company: 'OceanTech Solutions', 
+      amount: '$56,789.25', 
+      date: 'Oceanographic technology.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-059', 
+      company: 'ClimateTech Systems', 
+      amount: '$67,890.50', 
+      date: 'Climate research technology.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-060', 
+      company: 'EcoTech Solutions', 
+      amount: '$78,901.75', 
+      date: 'Ecological technology.', 
+      status: 'processed' 
+    },
+    { 
+      id: 'INV-2025-061', 
+      company: 'UrbanTech Systems', 
+      amount: '$89,012.00', 
+      date: 'Urban planning technology.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-062', 
+      company: 'RuralTech Solutions', 
+      amount: '$90,123.25', 
+      date: 'Rural development technology.', 
+      status: 'processing' 
+    },
+    { 
+      id: 'INV-2025-063', 
+      company: 'SocialTech Systems', 
+      amount: '$12,345.50', 
+      date: 'Social impact technology.', 
+      status: 'processed' 
     }
   ];
   
@@ -428,32 +778,32 @@ const InvoiceProcessing = () => {
   const renderChatPanel = () => {
     return (
       <div className={`h-full transition-all duration-300 ease-in-out ${isChatOpen ? 'w-80' : 'w-0'}`}>
-        <aside className="h-full bg-blue-50/50 flex flex-col">
+        <aside className="h-full bg-white flex flex-col border-l border-gray-200">
           {isChatOpen && (
             <>
               {/* Chat Header */}
-              <div className="flex justify-between items-center p-4 bg-blue-100 border-b border-blue-200">
+              <div className="flex justify-between items-center p-4 bg-gray-50 border-b border-gray-200">
                 <h3 className="font-medium text-gray-900">Assistant</h3>
                 <button 
                   onClick={() => {
                     setIsChatOpen(false);
                     setIsManuallyClosed(true);
                   }}
-                  className="p-1 rounded-full hover:bg-blue-200 active:bg-blue-300 text-gray-400 hover:text-gray-600 active:text-gray-800 focus:outline-none"
+                  className="p-1 rounded-full hover:bg-gray-200 active:bg-gray-300 text-gray-400 hover:text-gray-600 active:text-gray-800 focus:outline-none"
                 >
                   <X size={16} />
                 </button>
               </div>
 
               {/* Chat Messages */}
-              <div className="flex-1 bg-blue-50/50 p-4 overflow-y-auto">
-                <div className="space-y-4">
-                  <h2 className="text-xl font-semibold text-gray-900">What can I help with today?</h2>
-                  <div className="flex flex-wrap gap-2">
+              <div className="flex-1 bg-white p-4 overflow-y-auto">
+                <div className="space-y-4 mt-[150px]">
+                  <h2 className="text-xl font-semibold text-gray-900 text-center">What can I help with today?</h2>
+                  <div className="flex flex-wrap gap-2 justify-center">
                     {[1, 2, 3, 4, 5].map((num) => (
                       <button
                         key={num}
-                        className="px-3 py-1 rounded-full bg-white text-gray-700 text-sm hover:bg-gray-50"
+                        className="px-3 py-1 rounded-full bg-white text-gray-700 text-sm hover:bg-gray-50 border border-gray-100"
                       >
                         Topic {num}
                       </button>
@@ -770,7 +1120,7 @@ const InvoiceProcessing = () => {
               <div className="flex flex-col p-4 border-b border-gray-200">
                 <div className="flex items-center justify-between">
                   <h2 className="font-medium text-gray-700 flex items-center">
-                    Invoices <span className="text-sm text-gray-500 ml-1">(87)</span>
+                    Invoices <span className="text-sm text-gray-500 ml-1">({filteredInvoices.length})</span>
                   </h2>
                 <div className="md:hidden">
                     <button onClick={toggleLeftPane} className="p-1 rounded hover:bg-blue-100 active:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-[1500ms]">
@@ -883,33 +1233,34 @@ const InvoiceProcessing = () => {
             {selectedInvoice ? (
               <div className={`flex flex-col h-full transition-all duration-500 ease-in-out ${fadeState}`}>
                 <div className="p-4 border-b border-gray-200 flex flex-col h-full overflow-hidden">
-                  {/* Header */}
-                  <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-xl font-medium text-gray-800">Invoice Details</h2>
-                    <div className="flex items-center space-x-3">
-                      {!isChatOpen && (
-                        <button 
-                          onClick={toggleChat}
-                          className="flex items-center px-2.5 py-1.5 text-xs bg-blue-50 text-blue-600 rounded hover:bg-blue-100 active:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-150"
-                        >
-                          <MessageSquare size={14} className="mr-1.5" />
-                          Assistant
-                        </button>
-                      )}
-                      <button className="px-3 py-1.5 text-xs text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 transition-colors duration-150">
-                        Send Back
-                      </button>
-                      <button className="px-3 py-1.5 text-xs text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-150">
-                        Approve & Process
-                      </button>
+                  {/* Alert Banner with Buttons */}
+                  {selectedInvoice?.status === 'needs-assistance' && (
+                    <div className="bg-red-50 border border-red-100 rounded-lg px-3 py-2 mb-4">
+                      <div className="flex justify-between items-center">
+                        <div>
+                          <h3 className="text-xs font-medium text-red-800 mb-0.5">Action required at Step 3.</h3>
+                          <p className="text-xs text-red-700">Manual input required at Step 3.</p>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <button className="px-3 py-1.5 text-xs text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50 transition-colors duration-150">
+                            Send Back
+                          </button>
+                          <button className="px-3 py-1.5 text-xs text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-150">
+                            Approve & Process
+                          </button>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-
-                  {/* Alert Banner - Moved outside card */}
-                  <div className="bg-yellow-50 border border-yellow-100 rounded-lg px-3 py-2 mb-4">
-                    <h3 className="text-xs font-medium text-yellow-800 mb-0.5">Action required at Step 3.</h3>
-                    <p className="text-xs text-yellow-700">Manual input required at Step 3.</p>
-                  </div>
+                  )}
+                  {selectedInvoice?.status === 'processed' && (
+                    <div className="bg-green-50 border border-green-100 rounded-lg px-3 py-2 mb-4">
+                      <div className="flex justify-between items-center">
+                        <div>
+                          <p className="text-xs text-green-700">This invoice was processed autonomously by the Invoice AI Agent.</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
                   {/* Scrollable Content */}
                   <div className="flex-1 overflow-y-auto">
@@ -917,56 +1268,74 @@ const InvoiceProcessing = () => {
                     <div className="bg-white rounded-lg p-4 mb-4">
                       {/* Invoice Number and Status */}
                       <div className="flex justify-between items-start mb-4">
-                    <div>
+                        <div>
                           <div className="text-sm text-gray-500 mb-1">Invoice #</div>
                           <div className="text-2xl font-semibold">{displayedInvoice.id}</div>
-                    </div>
-                        <span className="px-3 py-1 bg-red-100 text-red-800 text-sm rounded-full">
-                          Needs Assistant
+                        </div>
+                        <span className={`px-3 py-1 text-sm rounded-full ${
+                          selectedInvoice?.status === 'needs-assistance' 
+                            ? 'bg-red-100 text-red-800' 
+                            : selectedInvoice?.status === 'processing'
+                            ? 'bg-blue-100 text-blue-800'
+                            : 'bg-green-100 text-green-800'
+                        }`}>
+                          {selectedInvoice?.status.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
                         </span>
                       </div>
 
                       {/* Timeline in Gray Card */}
-                      <div className="bg-gray-50 rounded-lg p-4">
+                      <div className="bg-white rounded-lg p-4">
                         <div className="relative">
                           {/* Connecting line */}
                           <div className="absolute left-0 right-0 h-[2px] top-3">
                             <div className="h-full bg-[#E5E7EB]" />
-                            <div className="h-full bg-[#10B981] absolute top-0 left-0 w-[40%]" />
+                            <div className={`h-full bg-[#10B981] absolute top-0 left-0 ${
+                              selectedInvoice?.status === 'needs-assistance' 
+                                ? 'w-[66%]' 
+                                : selectedInvoice?.status === 'processing'
+                                ? 'w-[100%]'
+                                : selectedInvoice?.status === 'processed'
+                                ? 'w-[100%]'
+                                : 'w-[40%]'
+                            }`} />
                           </div>
                           
                           {/* Timeline steps */}
                           <div className="relative flex justify-between">
                             {[
                               { 
-                                step: 'Step 1',
                                 title: 'Document',
                                 subtitle: 'Extraction',
                                 status: 'completed'
                               },
                               { 
-                                step: 'Step 2',
-                                title: '3-way',
-                                subtitle: 'matching',
+                                title: '3-Way',
+                                subtitle: 'Matching',
                                 status: 'completed'
                               },
                               { 
-                                step: 'Step 3',
                                 title: 'Payment',
                                 subtitle: 'Rules',
-                                status: 'pending'
+                                status: selectedInvoice?.status === 'needs-assistance' 
+                                  ? 'current' 
+                                  : selectedInvoice?.status === 'processing'
+                                  ? 'completed'
+                                  : 'completed'
                               },
                               { 
-                                step: 'Step 4',
                                 title: 'Payment',
                                 subtitle: 'Processed',
-                                status: 'pending'
+                                status: selectedInvoice?.status === 'processing' 
+                                  ? 'current' 
+                                  : selectedInvoice?.status === 'processed'
+                                  ? 'completed'
+                                  : 'pending'
                               }
                             ].map((item, index) => (
                               <div key={index} className="flex flex-col items-center">
                                 <div className={`w-6 h-6 rounded-full flex items-center justify-center relative z-10 ${
                                   item.status === 'completed' ? 'bg-[#10B981]' :
-                                  item.status === 'current' ? 'bg-white border-2 border-[#10B981]' :
+                                  item.status === 'current' ? 'bg-white border-2 border-[#E5E7EB]' :
                                   'bg-white border-2 border-[#E5E7EB]'
                                 }`}>
                                   {item.status === 'completed' ? (
@@ -975,12 +1344,11 @@ const InvoiceProcessing = () => {
                                     </svg>
                                   ) : (
                                     <div className={`w-1 h-1 rounded-full ${
-                                      item.status === 'current' ? 'bg-[#10B981]' : 'bg-[#E5E7EB]'
+                                      item.status === 'current' ? 'bg-[#E5E7EB]' : 'bg-[#E5E7EB]'
                                     }`} />
                                   )}
                                 </div>
                                 <div className="mt-2 text-center">
-                                  <div className="text-xs text-gray-500">{item.step}</div>
                                   <div className="text-xs font-medium text-gray-900">{item.title}</div>
                                   <div className="text-xs font-medium text-gray-900">{item.subtitle}</div>
                                 </div>
@@ -996,19 +1364,55 @@ const InvoiceProcessing = () => {
                       {/* Step 1 */}
                       <div className="bg-white border border-gray-200 rounded-lg p-4">
                         <div className="flex justify-between items-center mb-4">
-                    <div>
-                            <div className="text-sm text-gray-500">Step 1</div>
+                          <div>
                             <h3 className="text-lg font-semibold mb-2">Document Extraction</h3>
-                            <button 
-                              onClick={() => setIsPdfDialogOpen(true)}
-                              className="inline-flex items-center px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50"
-                            >
-                              <span className="mr-2">Invoice-tiff.pdf</span>
-                              <svg className="w-4 h-4 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                              </svg>
-                            </button>
-                    </div>
+                          </div>
+                          <span className="flex items-center text-gray-900 text-sm font-medium">
+                            <svg className="w-5 h-5 mr-1.5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                            Completed
+                          </span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4 mb-4">
+                          <div>
+                            <div className="text-sm text-gray-500 mb-1">Invoice #</div>
+                            <div className="bg-gray-50 rounded p-2 text-sm">{selectedInvoice?.id}</div>
+                          </div>
+                          <div>
+                            <div className="text-sm text-gray-500 mb-1">Vendor</div>
+                            <div className="bg-gray-50 rounded p-2 text-sm">{selectedInvoice?.company}</div>
+                          </div>
+                          <div>
+                            <div className="text-sm text-gray-500 mb-1">Total</div>
+                            <div className="bg-gray-50 rounded p-2 text-sm">{selectedInvoice?.amount}</div>
+                          </div>
+                          <div>
+                            <div className="text-sm text-gray-500 mb-1">Tax Amount</div>
+                            <div className="bg-gray-50 rounded p-2 text-sm">
+                              {selectedInvoice?.amount 
+                                ? `$${(parseFloat(selectedInvoice.amount.replace(/[^0-9.-]+/g, '')) * 0.08).toFixed(2)}`
+                                : '$0.00'}
+                            </div>
+                          </div>
+                        </div>
+                        <button 
+                          onClick={() => setIsPdfDialogOpen(true)}
+                          className="inline-flex items-center px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50"
+                        >
+                          <span className="mr-2">Invoice-tiff.pdf</span>
+                          <svg className="w-4 h-4 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </button>
+                      </div>
+
+                      {/* Step 2 */}
+                      <div className="bg-white border border-gray-200 rounded-lg p-4">
+                        <div className="flex justify-between items-center mb-4">
+                          <div>
+                            <h3 className="text-lg font-semibold">3-Way Matching</h3>
+                          </div>
                           <span className="flex items-center text-gray-900 text-sm font-medium">
                             <svg className="w-5 h-5 mr-1.5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
                               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -1017,55 +1421,17 @@ const InvoiceProcessing = () => {
                           </span>
                         </div>
                         <div className="grid grid-cols-2 gap-4">
-                    <div>
-                            <div className="text-sm text-gray-500 mb-1">Invoice #</div>
-                            <div className="bg-gray-50 rounded p-2 text-sm">field value</div>
-                    </div>
-                    <div>
-                            <div className="text-sm text-gray-500 mb-1">Vendor</div>
-                            <div className="bg-gray-50 rounded p-2 text-sm">field value</div>
-                    </div>
                           <div>
-                            <div className="text-sm text-gray-500 mb-1">Total</div>
-                            <div className="bg-gray-50 rounded p-2 text-sm">field value</div>
-                  </div>
-                          <div>
-                            <div className="text-sm text-gray-500 mb-1">Tax Amount</div>
-                            <div className="bg-gray-50 rounded p-2 text-sm">field value</div>
-                    </div>
-                  </div>
-                      </div>
-
-                      {/* Step 2 */}
-                      <div className="bg-white border border-gray-200 rounded-lg p-4">
-                        <div className="flex justify-between items-center mb-4">
-                  <div>
-                            <div className="text-sm text-gray-500">Step 2</div>
-                            <h3 className="text-lg font-semibold">3-way matching</h3>
-                    </div>
-                          <span className="flex items-center text-gray-900 text-sm font-medium">
-                            <svg className="w-5 h-5 mr-1.5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
-                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                            </svg>
-                            Completed
-                          </span>
-                  </div>
-                        <div className="grid grid-cols-2 gap-4">
-                          <div>
-                            <div className="text-sm text-gray-500 mb-1">Invoice #</div>
-                            <div className="bg-gray-50 rounded p-2 text-sm">field value</div>
+                            <div className="text-sm text-gray-500 mb-1">PO #</div>
+                            <div className="bg-gray-50 rounded p-2 text-sm">PO-{selectedInvoice?.id.split('-')[2]}-001</div>
                           </div>
                           <div>
-                            <div className="text-sm text-gray-500 mb-1">Vendor</div>
-                            <div className="bg-gray-50 rounded p-2 text-sm">field value</div>
+                            <div className="text-sm text-gray-500 mb-1">Item Quantity</div>
+                            <div className="bg-gray-50 rounded p-2 text-sm">{Math.floor(Math.random() * 100) + 1}</div>
                           </div>
                           <div>
-                            <div className="text-sm text-gray-500 mb-1">Total</div>
-                            <div className="bg-gray-50 rounded p-2 text-sm">field value</div>
-                          </div>
-                          <div>
-                            <div className="text-sm text-gray-500 mb-1">Tax Amount</div>
-                            <div className="bg-gray-50 rounded p-2 text-sm">field value</div>
+                            <div className="text-sm text-gray-500 mb-1">Total Price</div>
+                            <div className="bg-gray-50 rounded p-2 text-sm">{selectedInvoice?.amount}</div>
                           </div>
                         </div>
                       </div>
@@ -1074,37 +1440,47 @@ const InvoiceProcessing = () => {
                       <div className="bg-white border border-gray-200 rounded-lg p-4">
                         <div className="flex justify-between items-center mb-4">
                           <div>
-                            <div className="text-sm text-gray-500">Step 3</div>
                             <h3 className="text-lg font-semibold">Payment Rules</h3>
                           </div>
                           <span className="flex items-center text-gray-900 text-sm font-medium">
-                            <span className="w-2 h-2 bg-yellow-400 rounded-full mr-1.5"></span>
-                            Incomplete
+                            {selectedInvoice?.status === 'processed' || selectedInvoice?.status === 'processing' ? (
+                              <>
+                                <svg className="w-5 h-5 mr-1.5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
+                                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                </svg>
+                                Completed
+                              </>
+                            ) : (
+                              <>
+                                <span className="w-2 h-2 bg-yellow-400 rounded-full mr-1.5"></span>
+                                Incomplete
+                              </>
+                            )}
                           </span>
                         </div>
                         <div className="grid grid-cols-2 gap-6">
                           <div>
                             <div className="text-sm text-gray-700 mb-2">Below threshold amount</div>
-                            <div className="space-y-2">
+                            <div className="flex space-x-4">
                               <label className="flex items-center">
-                                <input type="radio" name="threshold" className="form-radio text-blue-600" defaultChecked />
+                                <input type="radio" name="threshold" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status !== 'needs-assistance'} />
                                 <span className="ml-2 text-sm">Yes</span>
                               </label>
                               <label className="flex items-center">
-                                <input type="radio" name="threshold" className="form-radio text-blue-600" />
+                                <input type="radio" name="threshold" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status === 'needs-assistance'} />
                                 <span className="ml-2 text-sm">No</span>
                               </label>
                             </div>
                           </div>
                           <div>
                             <div className="text-sm text-gray-700 mb-2">Verified payment terms</div>
-                            <div className="space-y-2">
+                            <div className="flex space-x-4">
                               <label className="flex items-center">
-                                <input type="radio" name="payment_terms" className="form-radio text-blue-600" defaultChecked />
+                                <input type="radio" name="payment_terms" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status !== 'needs-assistance'} />
                                 <span className="ml-2 text-sm">Yes</span>
                               </label>
                               <label className="flex items-center">
-                                <input type="radio" name="payment_terms" className="form-radio text-blue-600" />
+                                <input type="radio" name="payment_terms" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status === 'needs-assistance'} />
                                 <span className="ml-2 text-sm">No</span>
                               </label>
                             </div>
@@ -1116,37 +1492,47 @@ const InvoiceProcessing = () => {
                       <div className="bg-white border border-gray-200 rounded-lg p-4">
                         <div className="flex justify-between items-center mb-4">
                           <div>
-                            <div className="text-sm text-gray-500">Step 4</div>
                             <h3 className="text-lg font-semibold">Payment Processed</h3>
                           </div>
                           <span className="flex items-center text-gray-900 text-sm font-medium">
-                            <span className="w-2 h-2 bg-yellow-400 rounded-full mr-1.5"></span>
-                            Incomplete
+                            {selectedInvoice?.status === 'processed' ? (
+                              <>
+                                <svg className="w-5 h-5 mr-1.5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
+                                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                </svg>
+                                Completed
+                              </>
+                            ) : (
+                              <>
+                                <span className="w-2 h-2 bg-yellow-400 rounded-full mr-1.5"></span>
+                                Incomplete
+                              </>
+                            )}
                           </span>
                         </div>
                         <div className="grid grid-cols-2 gap-6">
                           <div>
                             <div className="text-sm text-gray-700 mb-2">Payment posted</div>
-                            <div className="space-y-2">
+                            <div className="flex space-x-4">
                               <label className="flex items-center">
-                                <input type="radio" name="payment_posted" className="form-radio text-blue-600" defaultChecked />
+                                <input type="radio" name="payment_posted" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status !== 'needs-assistance'} />
                                 <span className="ml-2 text-sm">Yes</span>
                               </label>
                               <label className="flex items-center">
-                                <input type="radio" name="payment_posted" className="form-radio text-blue-600" />
+                                <input type="radio" name="payment_posted" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status === 'needs-assistance'} />
                                 <span className="ml-2 text-sm">No</span>
                               </label>
                             </div>
                           </div>
                           <div>
                             <div className="text-sm text-gray-700 mb-2">Notification sent to vendor</div>
-                            <div className="space-y-2">
+                            <div className="flex space-x-4">
                               <label className="flex items-center">
-                                <input type="radio" name="notification_sent" className="form-radio text-blue-600" defaultChecked />
+                                <input type="radio" name="notification_sent" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status !== 'needs-assistance'} />
                                 <span className="ml-2 text-sm">Yes</span>
                               </label>
                               <label className="flex items-center">
-                                <input type="radio" name="notification_sent" className="form-radio text-blue-600" />
+                                <input type="radio" name="notification_sent" className="form-radio text-blue-600" defaultChecked={selectedInvoice?.status === 'needs-assistance'} />
                                 <span className="ml-2 text-sm">No</span>
                               </label>
                             </div>
@@ -1335,34 +1721,51 @@ const InvoiceProcessing = () => {
             </button>
             
             {isMenuOpen && (
-              <div className="absolute right-0 mt-1 w-48 bg-white rounded-md shadow-lg py-1 z-10 border border-gray-200">
+              <div className="absolute right-0 mt-1 w-64 bg-white rounded-lg shadow-lg py-3 z-10">
+                {/* Header Section */}
+                <div className="px-4 pb-2">
+                  <h3 className="text-sm text-gray-600">Discover More AI Solutions</h3>
+                </div>
+                
+                {/* Solutions Lab Link */}
                 <a 
                   href="/solutions-lab"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-gray-200 focus:outline-none focus:bg-gray-100 transition-colors duration-150 flex items-center justify-between group block"
+                  className="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 active:bg-gray-100 focus:outline-none transition-colors duration-150 flex items-center justify-between group"
                 >
-                  <div className="flex items-center">
-                    <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M3 3h18v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3z" />
-                      <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8" />
-                      <path d="M12 8v8" />
-                      <path d="M8 12h8" />
-                    </svg>
-                    Solutions Lab
-                  </div>
-                  <svg className="w-4 h-4 text-gray-400 group-hover:text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <path d="M15 3h6v6" />
-                    <path d="M10 14L21 3" />
+                  <span className="font-medium">Solutions Lab</span>
+                  <svg className="w-4 h-4 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
                 </a>
-                <div className="border-t border-gray-100 my-1"></div>
-                <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-gray-200 focus:outline-none focus:bg-gray-100 transition-colors duration-150">Invoice Processing</button>
-                <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-gray-200 focus:outline-none focus:bg-gray-100 transition-colors duration-150">Billing</button>
-                <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-gray-200 focus:outline-none focus:bg-gray-100 transition-colors duration-150">Collections</button>
-                <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-gray-200 focus:outline-none focus:bg-gray-100 transition-colors duration-150">Customer Setup</button>
-                <button className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-gray-200 focus:outline-none focus:bg-gray-100 transition-colors duration-150">Monthly Close</button>
+
+                {/* Divider */}
+                <div className="my-2 border-t border-gray-100"></div>
+
+                {/* My Solutions Section */}
+                <div className="px-4 pb-2">
+                  <h3 className="text-sm text-gray-600">My Solutions</h3>
+                </div>
+
+                {/* Solution Links */}
+                <div className="space-y-1">
+                  <button className="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 active:bg-gray-100 focus:outline-none transition-colors duration-150 font-medium">
+                    Invoice Processing
+                  </button>
+                  <button className="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 active:bg-gray-100 focus:outline-none transition-colors duration-150">
+                    Billing
+                  </button>
+                  <button className="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 active:bg-gray-100 focus:outline-none transition-colors duration-150">
+                    Collections
+                  </button>
+                  <button className="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 active:bg-gray-100 focus:outline-none transition-colors duration-150">
+                    Customer Setup
+                  </button>
+                  <button className="w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-50 active:bg-gray-100 focus:outline-none transition-colors duration-150">
+                    Monthly Close
+                  </button>
+                </div>
               </div>
             )}
           </div>
