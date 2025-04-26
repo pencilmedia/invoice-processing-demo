@@ -1,113 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Eye, EyeOff, Menu, User, X, MessageSquare, ChevronRight, ChevronLeft } from 'lucide-react';
+import { Invoice, ChatMessage } from '../types/invoice';
+import PdfViewerDialog from './PdfViewerDialog';
 
-interface Invoice {
-  id: string;
-  company: string;
-  amount: string;
-  date: string;
-  status: 'pending' | 'processing' | 'processed' | 'needs-assistance';
-}
-
-interface ChatMessage {
-  type: 'user' | 'assistant';
-  text: string;
-}
-
-// Move PdfViewerDialog outside the main component
-const PdfViewerDialog = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 z-50">
-      {/* Scrim/Overlay */}
-      <div className="absolute inset-0 bg-black/50 transition-opacity duration-[1500ms]" onClick={onClose} />
-      
-      {/* Dialog */}
-      <div className="absolute inset-4 bg-white rounded-lg shadow-xl flex flex-col transition-all duration-[1500ms]">
-        {/* Header - Fixed */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200">
-          <h2 className="text-lg font-medium text-gray-900">Invoice-tiff.pdf</h2>
-          <button 
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-          >
-            <X size={20} />
-          </button>
-        </div>
-        
-        {/* Content - Scrollable */}
-        <div className="flex-1 min-h-0">
-          <div className="flex h-full">
-            {/* Left side - PDF pages */}
-            <div className="w-72 flex flex-col bg-gray-50 border-r border-gray-200">
-              <h3 className="text-sm font-medium text-gray-900 p-4 border-b border-gray-200">Pages (12)</h3>
-              <div className="flex-1 overflow-y-auto">
-                <div className="space-y-2 p-4">
-                  {[...Array(12)].map((_, i) => (
-                    <div key={i} className="aspect-[3/4] bg-white rounded-lg flex items-center justify-center">
-                      <svg className="w-8 h-8 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            
-            {/* Center - Main PDF view */}
-            <div className="flex-1 flex flex-col min-w-0">
-              <div className="flex-1 overflow-y-auto p-6">
-                <div className="h-full bg-gray-100 rounded-lg flex items-center justify-center">
-                  <svg className="w-24 h-24 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            
-            {/* Right side - Extracted fields */}
-            <div className="w-80 flex flex-col bg-gray-50 border-l border-gray-200">
-              <h3 className="text-sm font-medium text-gray-900 p-4 border-b border-gray-200">Extracted form fields</h3>
-              <div className="flex-1 overflow-y-auto">
-                <div className="p-4">
-                  {[1, 2, 3].map((section) => (
-                    <div key={section} className="mb-6">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-sm font-medium text-gray-900">Section Name</h3>
-                        <button className="text-gray-400 hover:text-gray-500">
-                          <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                          </svg>
-                        </button>
-                      </div>
-                      <div className="space-y-3">
-                        <div>
-                          <div className="text-sm text-gray-500 mb-1">PO Number</div>
-                          <div className="bg-white rounded p-2 text-sm">field value</div>
-                        </div>
-                        <div>
-                          <div className="text-sm text-gray-500 mb-1">Item Quantity</div>
-                          <div className="bg-white rounded p-2 text-sm">field value</div>
-                        </div>
-                        <div>
-                          <div className="text-sm text-gray-500 mb-1">Total Price</div>
-                          <div className="bg-white rounded p-2 text-sm">field value</div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const InvoiceProcessing = () => {
+const InvoiceProcessing: React.FC = () => {
   // Authentication state
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -120,21 +16,21 @@ const InvoiceProcessing = () => {
       id: 'INV-2025-001', 
       company: 'Acme Corp', 
       amount: '$1,245.00', 
-      date: 'Lorem ipsum dolor sit amet consectetur adipiscing.', 
+      date: '2025-01-01', 
       status: 'needs-assistance' 
     },
     { 
       id: 'INV-2025-002', 
       company: 'TechSolutions Inc.', 
       amount: '$3,782.50', 
-      date: 'Vestibulum ante ipsum primis in faucibus orci luctus.', 
+      date: '2025-01-02', 
       status: 'processing' 
     },
     { 
       id: 'INV-2025-003', 
       company: 'Global Manufacturers', 
       amount: '$945.75', 
-      date: 'Sed do eiusmod tempor. Ut labore et dolore magna aliqua.', 
+      date: '2025-01-03', 
       status: 'processed' 
     },
     { 
@@ -560,11 +456,11 @@ const InvoiceProcessing = () => {
   ];
   
   // App state
-  const [selectedInvoice, setSelectedInvoice] = useState<Invoice>(invoices.find(inv => inv.status === 'needs-assistance') || invoices[0]);
+  const [selectedInvoice, setSelectedInvoice] = useState<Invoice | null>(null);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(1200); // Default value that matches server
   const [isLeftPaneCollapsed, setIsLeftPaneCollapsed] = useState(false);
-  const [leftPaneWidth, setLeftPaneWidth] = useState(324);
+  const [leftPaneWidth, setLeftPaneWidth] = useState(320);
   const [isResizing, setIsResizing] = useState(false);
   const [isNarrowView, setIsNarrowView] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -582,7 +478,7 @@ const InvoiceProcessing = () => {
   
   // Add new states for search and filter
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeFilter, setActiveFilter] = useState('needs-assistance');
+  const [activeFilter, setActiveFilter] = useState('all');
   
   // Refs
   const resizeRef = useRef<HTMLDivElement>(null);
@@ -1302,18 +1198,10 @@ const InvoiceProcessing = () => {
 
   // Filter invoices based on search query and active filter
   const filteredInvoices = invoices.filter(invoice => {
-    const matchesSearch = 
-      searchQuery === '' ||
+    const matchesSearch = !searchQuery || 
       invoice.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      invoice.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      invoice.amount.toLowerCase().includes(searchQuery.toLowerCase());
-
-    const matchesFilter = 
-      activeFilter === 'all' ||
-      (activeFilter === 'needs-assistance' && invoice.status === 'needs-assistance') ||
-      (activeFilter === 'processing' && invoice.status === 'processing') ||
-      (activeFilter === 'processed' && invoice.status === 'processed');
-
+      invoice.company.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesFilter = activeFilter === 'all' || invoice.status === activeFilter;
     return matchesSearch && matchesFilter;
   });
 
@@ -1326,7 +1214,7 @@ const InvoiceProcessing = () => {
           ref={leftPaneRef}
           className={`relative border-r border-gray-200 flex flex-col ${
             isLeftPaneCollapsed ? 'w-10 bg-gray-100' : 'bg-white'
-          } ${isResizing ? '' : 'transition-all duration-[1500ms]'}`}
+        } ${isResizing ? '' : 'transition-all duration-200'}`}
           style={{ 
             width: isLeftPaneCollapsed ? '40px' : `${leftPaneWidth}px`,
             minWidth: isLeftPaneCollapsed ? '40px' : '150px',
@@ -1337,7 +1225,7 @@ const InvoiceProcessing = () => {
             <div className="p-2">
               <button 
                 onClick={toggleLeftPane} 
-                className="p-1 rounded hover:bg-blue-300 active:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-[1500ms]"
+                className="p-1 rounded hover:bg-blue-300 active:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-200"
               >
                 <ChevronRight size={18} />
               </button>
@@ -1349,11 +1237,12 @@ const InvoiceProcessing = () => {
                   <h2 className="font-medium text-gray-700 flex items-center">
                     Invoices <span className="text-sm text-gray-500 ml-1">({filteredInvoices.length})</span>
                   </h2>
-                <div className="md:hidden">
-                    <button onClick={toggleLeftPane} className="p-1 rounded hover:bg-blue-100 active:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-[1500ms]">
+                  <button 
+                    onClick={toggleLeftPane} 
+                    className="p-1 rounded hover:bg-blue-100 active:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-200"
+                  >
                     <ChevronLeft size={18} />
                   </button>
-                  </div>
                 </div>
               </div>
               <div className="overflow-y-auto flex-1">
@@ -1478,16 +1367,16 @@ const InvoiceProcessing = () => {
                     {/* Alert Banner with Buttons */}
                     {selectedInvoice.status === 'needs-assistance' && (
                       <div className="bg-red-50 rounded-lg p-4 mb-6">
-                        <div className="flex justify-between items-start">
-                          <div className="space-y-1">
-                            <p className="text-red-800">This invoice requires assistance</p>
-                            <p className="text-sm text-red-700">Please review the details and take appropriate action.</p>
+                        <div className="flex justify-between items-start gap-4">
+                          <div className="min-w-0 flex-shrink">
+                            <p className="text-red-800 truncate">This invoice requires assistance</p>
+                            <p className="text-sm text-red-700 line-clamp-2">Please review the details and take appropriate action.</p>
                           </div>
-                          <div className="flex space-x-2">
-                            <button className="px-3 py-1 text-sm bg-white text-red-700 border border-red-300 rounded hover:bg-red-50">
+                          <div className="flex gap-2 flex-nowrap flex-shrink-0">
+                            <button className="whitespace-nowrap px-3 py-1 text-sm bg-white text-red-700 border border-red-300 rounded hover:bg-red-50">
                               Send Back
                             </button>
-                            <button className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">
+                            <button className="whitespace-nowrap px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">
                               Approve & Process
                             </button>
                           </div>
